@@ -20,7 +20,7 @@ export const faqs: FAQ[] = [
     topic: "general",
     question: "Where is Carolina Academy located?",
     answer:
-      "Carolina Academy is located at Slot A1, Carolina Beach Resort, Ambakandawila Road, Chilaw, Sri Lanka. See the Contact page for directions and a map.",
+      "Carolina Academy operates from two locations. Practical vocational and hospitality training takes place at the Hospitality Training Center, Slot A1, Carolina Beach Resort, Ambakandawila Road, Chilaw, Sri Lanka. Study-abroad consultations take place at the Study Abroad Office, 1665/A, 1st Floor, Colombo Road, Kurana, Katunayake, Sri Lanka. See the Contact page for directions and a map to each location.",
   },
   {
     id: "how-to-apply-for-a-course",
@@ -118,7 +118,14 @@ export const faqs: FAQ[] = [
     topic: "contact",
     question: "How can I contact Carolina Academy?",
     answer:
-      "Call +94 77 395 2316, email info@carolinaacademy.lk, message on WhatsApp, or visit Slot A1, Carolina Beach Resort, Ambakandawila Road, Chilaw, Sri Lanka. Office hours are Monday to Saturday, 10:00 AM to 5:30 PM.",
+      "Call +94 77 395 2316, email info@carolinaacademy.lk, or message on WhatsApp. You can also visit in person: the Hospitality Training Center at Slot A1, Carolina Beach Resort, Ambakandawila Road, Chilaw, or the Study Abroad Office at 1665/A, 1st Floor, Colombo Road, Kurana, Katunayake. Office hours are Monday to Saturday, 10:00 AM to 5:30 PM at both locations.",
+  },
+  {
+    id: "difference-between-carolina-academy-locations",
+    topic: "contact",
+    question: "What is the difference between the Chilaw and Katunayake locations?",
+    answer:
+      "The Hospitality Training Center in Chilaw, at Carolina Beach Resort, is where practical vocational and hospitality courses are delivered. The Study Abroad Office in Katunayake is a consultation office for university applications, study-abroad guidance and visa-document support and does not deliver hands-on training.",
   },
 ];
 

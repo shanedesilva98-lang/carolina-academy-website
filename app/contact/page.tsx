@@ -8,16 +8,16 @@ import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { FAQAccordion } from "@/components/shared/FAQAccordion";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { Card, CardContent } from "@/components/ui/card";
-import { organisation } from "@/content/organisation";
+import { locations } from "@/content/organisation";
 import { getFaqsByTopic } from "@/content/faqs";
 import { whatsappMessages } from "@/lib/whatsapp";
 import { buildMetadata } from "@/lib/metadata";
-import { webPageSchema } from "@/lib/schema";
+import { webPageSchema, localBusinessSchema } from "@/lib/schema";
 
 export const metadata = buildMetadata({
-  title: "Contact Carolina Academy | Chilaw, Sri Lanka",
+  title: "Contact Carolina Academy | Chilaw & Katunayake, Sri Lanka",
   description:
-    "Contact Carolina Academy for course enquiries and study-abroad consultations. Address, phone, email, opening hours, map and contact form for Chilaw, Sri Lanka.",
+    "Contact Carolina Academy for course enquiries and study-abroad consultations. Address, phone, email, opening hours, map and contact form for our Chilaw Hospitality Training Center and Katunayake Study Abroad Office.",
   path: "/contact",
 });
 
@@ -26,7 +26,12 @@ export default function ContactPage() {
 
   return (
     <>
-      <SchemaMarkup schema={webPageSchema({ path: "/contact", title: "Contact Carolina Academy", description: "Contact details for Carolina Academy." })} />
+      <SchemaMarkup
+        schema={[
+          webPageSchema({ path: "/contact", title: "Contact Carolina Academy", description: "Contact details for Carolina Academy." }),
+          ...locations.map((location) => localBusinessSchema(location)),
+        ]}
+      />
       <Breadcrumbs items={[{ name: "Contact", path: "/contact" }]} />
 
       <section className="bg-navy py-16 text-white sm:py-20">
@@ -43,42 +48,58 @@ export default function ContactPage() {
       </section>
 
       <section className="py-16 sm:py-20">
-        <div className="container grid grid-cols-1 gap-10 lg:grid-cols-5">
-          <div className="flex flex-col gap-6 lg:col-span-2">
-            <ContactCard />
-            <Card>
-              <CardContent className="flex flex-col gap-3 p-6">
-                <h3 className="font-heading text-base font-bold text-navy">What Can We Help With?</h3>
-                <ul className="flex flex-col gap-2 text-sm text-ink-muted">
-                  <li>
-                    <Link href="/courses" className="font-semibold text-royal hover:underline">Course enquiries</Link> — ask about active and upcoming programmes.
-                  </li>
-                  <li>
-                    <Link href="/study-abroad" className="font-semibold text-royal hover:underline">Study-abroad consultations</Link> — discuss South Korea study options.
-                  </li>
-                  <li>
-                    <Link href="/apply" className="font-semibold text-royal hover:underline">Apply Now</Link> — start a course application or eligibility assessment.
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="font-heading text-base font-bold text-navy">Social</h3>
-                <p className="mt-2 text-sm text-ink-muted">
-                  Official social media links will be added here once confirmed by Carolina Academy.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-          <div className="lg:col-span-3">
-            <MapEmbed />
-            <p className="mt-3 text-xs text-ink-muted">{organisation.address.full}</p>
+        <div className="container">
+          <SectionHeading
+            eyebrow="Two Locations"
+            title="Visit Us"
+            description="Practical training and study-abroad guidance happen at two different Carolina Academy locations — visit whichever matches your enquiry."
+          />
+          <div className="mt-10 flex flex-col gap-16">
+            {locations.map((location) => (
+              <div key={location.id} className="grid grid-cols-1 gap-10 lg:grid-cols-5">
+                <div className="lg:col-span-2">
+                  <ContactCard location={location} />
+                </div>
+                <div className="lg:col-span-3">
+                  <MapEmbed location={location} />
+                  <p className="mt-3 text-xs text-ink-muted">{location.full}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       <section className="bg-surface-off py-16 sm:py-20">
+        <div className="container grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <Card>
+            <CardContent className="flex flex-col gap-3 p-6">
+              <h3 className="font-heading text-base font-bold text-navy">What Can We Help With?</h3>
+              <ul className="flex flex-col gap-2 text-sm text-ink-muted">
+                <li>
+                  <Link href="/courses" className="font-semibold text-royal hover:underline">Course enquiries</Link> — ask about active and upcoming programmes, handled at the Hospitality Training Center.
+                </li>
+                <li>
+                  <Link href="/study-abroad" className="font-semibold text-royal hover:underline">Study-abroad consultations</Link> — discuss South Korea study options at the Study Abroad Office.
+                </li>
+                <li>
+                  <Link href="/apply" className="font-semibold text-royal hover:underline">Apply Now</Link> — start a course application or eligibility assessment.
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-6">
+              <h3 className="font-heading text-base font-bold text-navy">Social</h3>
+              <p className="mt-2 text-sm text-ink-muted">
+                Official social media links will be added here once confirmed by Carolina Academy.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-20">
         <div className="container max-w-2xl">
           <SectionHeading eyebrow="Send a Message" title="Contact Form" align="center" />
           <Card className="mt-10">

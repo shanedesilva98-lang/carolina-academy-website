@@ -25,13 +25,13 @@ const sections = [
     images: [{ src: "/images/facilities-kitchen.svg", alt: "Practical training kitchen at Carolina Academy" }, { src: "/images/training-kitchen.svg", alt: "Students practising in the training kitchen" }],
   },
   {
-    title: "Carolina Beach Resort — Hospitality Training Environment",
+    title: "Hospitality Training Center — Carolina Beach Resort",
     description: "Practical training takes place within the working hospitality environment at Carolina Beach Resort, Ambakandawila Road, Chilaw.",
-    images: [{ src: "/images/carolina-beach-resort.svg", alt: "Carolina Beach Resort, Carolina Academy's practical training venue" }],
+    images: [{ src: "/images/carolina-beach-resort.svg", alt: "Carolina Beach Resort, home of Carolina Academy's Hospitality Training Center" }],
   },
   {
     title: "Consultation Areas",
-    description: "Dedicated spaces for one-on-one study-abroad and course guidance sessions.",
+    description: "Dedicated spaces for one-on-one study-abroad and course guidance sessions, primarily at the Study Abroad Office in Katunayake.",
     images: [{ src: "/images/facilities-consultation-area.svg", alt: "Consultation area at Carolina Academy" }],
   },
   {

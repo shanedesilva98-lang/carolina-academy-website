@@ -1,4 +1,4 @@
-import { organisation } from "@/content/organisation";
+import { organisation, locations, type OrganisationLocation } from "@/content/organisation";
 import { absoluteUrl } from "@/lib/utils";
 import type { Course } from "@/types/course";
 import type { Article, EventItem } from "@/types/article";
@@ -24,6 +24,16 @@ export function postalAddressSchema() {
   };
 }
 
+/** PostalAddress for a specific Carolina Academy location (see content/organisation.ts). */
+export function postalAddressSchemaFor(location: OrganisationLocation) {
+  return {
+    "@type": "PostalAddress",
+    streetAddress: location.streetAddress,
+    addressLocality: location.city,
+    addressCountry: location.countryCode,
+  };
+}
+
 export function contactPointSchema() {
   return {
     "@type": "ContactPoint",
@@ -33,6 +43,15 @@ export function contactPointSchema() {
     areaServed: "LK",
     availableLanguage: ["English", "Sinhala", "Tamil"],
   };
+}
+
+/** Both Carolina Academy locations, represented as schema.org Place entries. */
+function organisationLocationsSchema() {
+  return locations.map((location) => ({
+    "@type": "Place",
+    name: `${organisation.name} — ${location.name}`,
+    address: postalAddressSchemaFor(location),
+  }));
 }
 
 export function educationalOrganizationSchema() {
@@ -47,6 +66,7 @@ export function educationalOrganizationSchema() {
     telephone: organisation.telephone,
     email: organisation.email,
     address: postalAddressSchema(),
+    location: organisationLocationsSchema(),
     contactPoint: [contactPointSchema()],
     ...(organisation.sameAs.length > 0 ? { sameAs: organisation.sameAs } : {}),
   };
@@ -61,6 +81,7 @@ export function organizationSchema() {
     url: organisation.url,
     logo: absoluteUrl("/logos/carolina-academy-icon.png"),
     address: postalAddressSchema(),
+    location: organisationLocationsSchema(),
     contactPoint: [contactPointSchema()],
     ...(organisation.sameAs.length > 0 ? { sameAs: organisation.sameAs } : {}),
   };
@@ -234,21 +255,23 @@ export function imageObjectSchema(image: { url: string; caption: string }) {
   };
 }
 
-export function localBusinessSchema() {
+/** LocalBusiness (+ EducationalOrganization for the primary/TVEC-registered site) schema for a location page. */
+export function localBusinessSchema(location: OrganisationLocation = locations[0]) {
   return {
     "@context": "https://schema.org",
-    "@type": ["EducationalOrganization", "LocalBusiness"],
-    "@id": absoluteUrl("/locations/chilaw#localbusiness"),
-    name: `${organisation.name} — Chilaw Training Centre`,
-    url: absoluteUrl("/locations/chilaw"),
-    telephone: organisation.telephone,
-    email: organisation.email,
-    address: postalAddressSchema(),
+    "@type": location.isPrimary ? ["EducationalOrganization", "LocalBusiness"] : ["LocalBusiness"],
+    "@id": absoluteUrl(`/locations/${location.slug}#localbusiness`),
+    name: `${organisation.name} — ${location.name}`,
+    url: absoluteUrl(`/locations/${location.slug}`),
+    telephone: location.telephone,
+    email: location.email,
+    address: postalAddressSchemaFor(location),
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: organisation.openingHours.schemaDays,
-      opens: organisation.openingHours.schemaOpens,
-      closes: organisation.openingHours.schemaCloses,
+      dayOfWeek: location.openingHours.schemaDays,
+      opens: location.openingHours.schemaOpens,
+      closes: location.openingHours.schemaCloses,
     },
+    ...(location.isPrimary ? {} : { branchOf: { "@id": absoluteUrl("/#organization") } }),
   };
 }

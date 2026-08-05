@@ -65,7 +65,8 @@ cp .env.example .env.local
 | `RESEND_API_KEY` / `SENDGRID_API_KEY` / `BREVO_API_KEY` | Pick **one** email provider — see §10 |
 | `CRM_WEBHOOK_URL`, `GOOGLE_SHEETS_WEBHOOK_URL`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | Optional lead-delivery integrations |
 | `NEXT_PUBLIC_WHATSAPP_NUMBER` | WhatsApp number used to build `wa.me` links (public, no `+`) |
-| `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL` | "Embed a map" URL from Google Maps for the Contact/Chilaw pages |
+| `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL_CHILAW` | "Embed a map" URL from Google Maps for the Hospitality Training Center (Chilaw) |
+| `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL_KATUNAYAKE` | "Embed a map" URL from Google Maps for the Study Abroad Office (Katunayake) |
 | `FORM_RATE_LIMIT_WINDOW_MS`, `FORM_RATE_LIMIT_MAX_SUBMISSIONS` | In-memory API rate-limit tuning |
 
 **Never** prefix a secret (API key, webhook URL with a token) with `NEXT_PUBLIC_` — that exposes it to the
@@ -221,7 +222,7 @@ against each major route, and manually verify:
 4. Confirm TVEC registration document upload on the About page's Accreditation section.
 5. Set a real email provider in `lib/email.ts` (§7).
 6. Set analytics env vars and add a cookie-consent banner before enabling non-essential scripts.
-7. Set `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL` for a live map.
+7. Set `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL_CHILAW` and `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL_KATUNAYAKE` for live maps.
 8. Run `npm run build && npm run lint && npm run typecheck` — all must pass with zero errors.
 9. Run Lighthouse on the homepage, a course page and the South Korea page — target LCP < 2.5s, INP < 200ms,
    CLS < 0.1.

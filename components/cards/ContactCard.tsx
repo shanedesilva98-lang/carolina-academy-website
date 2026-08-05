@@ -2,18 +2,22 @@
 
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { organisation } from "@/content/organisation";
+import { locations, type OrganisationLocation } from "@/content/organisation";
 import { trackEvent } from "@/lib/analytics";
 
-export function ContactCard() {
+export function ContactCard({ location = locations[0] }: { location?: OrganisationLocation }) {
   return (
     <Card>
       <CardContent className="flex flex-col gap-5 p-6">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-wide text-royal">{location.name}</p>
+          <p className="mt-0.5 text-xs text-ink-muted">{location.role}</p>
+        </div>
         <div className="flex items-start gap-3">
           <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-royal" />
           <div>
             <p className="font-heading font-bold text-navy">Address</p>
-            <p className="text-sm text-ink-muted">{organisation.address.full}</p>
+            <p className="text-sm text-ink-muted">{location.full}</p>
           </div>
         </div>
         <div className="flex items-start gap-3">
@@ -21,11 +25,11 @@ export function ContactCard() {
           <div>
             <p className="font-heading font-bold text-navy">Telephone</p>
             <a
-              href={organisation.telephoneHref}
-              onClick={() => trackEvent("telephone_click", { source: "contact-card" })}
+              href={location.telephoneHref}
+              onClick={() => trackEvent("telephone_click", { source: "contact-card", location: location.id })}
               className="text-sm text-royal hover:underline"
             >
-              {organisation.telephone}
+              {location.telephone}
             </a>
           </div>
         </div>
@@ -34,11 +38,11 @@ export function ContactCard() {
           <div>
             <p className="font-heading font-bold text-navy">Email</p>
             <a
-              href={organisation.emailHref}
-              onClick={() => trackEvent("email_click", { source: "contact-card" })}
+              href={location.emailHref}
+              onClick={() => trackEvent("email_click", { source: "contact-card", location: location.id })}
               className="text-sm text-royal hover:underline"
             >
-              {organisation.email}
+              {location.email}
             </a>
           </div>
         </div>
@@ -47,9 +51,9 @@ export function ContactCard() {
           <div>
             <p className="font-heading font-bold text-navy">Opening Hours</p>
             <p className="text-sm text-ink-muted">
-              {organisation.openingHours.days}
+              {location.openingHours.days}
               <br />
-              {organisation.openingHours.hours}
+              {location.openingHours.hours}
             </p>
           </div>
         </div>

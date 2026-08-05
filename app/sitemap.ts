@@ -21,6 +21,7 @@ const staticRoutes = [
   { path: "/news", priority: 0.6, changeFrequency: "weekly" as const },
   { path: "/events", priority: 0.6, changeFrequency: "weekly" as const },
   { path: "/locations/chilaw", priority: 0.7, changeFrequency: "monthly" as const },
+  { path: "/locations/katunayake", priority: 0.7, changeFrequency: "monthly" as const },
   { path: "/contact", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/apply", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/privacy-policy", priority: 0.2, changeFrequency: "yearly" as const },

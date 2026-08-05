@@ -5,51 +5,64 @@ import { SchemaMarkup } from "@/components/seo/SchemaMarkup";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { MapEmbed } from "@/components/shared/MapEmbed";
 import { FAQAccordion } from "@/components/shared/FAQAccordion";
+import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { Card, CardContent } from "@/components/ui/card";
 import { getLocation } from "@/content/organisation";
-import { courses } from "@/content/courses";
 import { faqs } from "@/content/faqs";
+import { whatsappMessages } from "@/lib/whatsapp";
 import { buildMetadata } from "@/lib/metadata";
 import { localBusinessSchema, webPageSchema } from "@/lib/schema";
 
-const location = getLocation("chilaw");
+const location = getLocation("katunayake");
 
 export const metadata = buildMetadata({
-  title: "Hospitality Training Center in Chilaw | Carolina Academy",
+  title: "Study Abroad Office in Katunayake | Carolina Academy",
   description:
-    "Carolina Academy's Hospitality Training Center at Carolina Beach Resort, Ambakandawila Road, Chilaw, Sri Lanka — address, opening hours, directions and courses available at this location.",
-  path: "/locations/chilaw",
+    "Carolina Academy's Study Abroad Office at 1665/A, 1st Floor, Colombo Road, Kurana, Katunayake, Sri Lanka — address, opening hours, directions and study-abroad services available at this location.",
+  path: "/locations/katunayake",
 });
 
-const locationFaqIds = ["where-is-carolina-academy-located", "how-to-contact-carolina-academy", "difference-between-carolina-academy-locations"];
+const locationFaqIds = ["how-to-contact-carolina-academy", "study-abroad-what-does-carolina-academy-do", "difference-between-carolina-academy-locations"];
 const locationFaqs = faqs.filter((faq) => locationFaqIds.includes(faq.id));
 
-export default function ChilawLocationPage() {
+const services = [
+  { label: "Study Abroad Overview", href: "/study-abroad", description: "How Carolina Academy supports your study-abroad journey" },
+  { label: "Study in South Korea", href: "/study-abroad/south-korea", description: "University degrees, Korean-language pathways and career-focused study" },
+  { label: "Application Process", href: "/study-abroad/application-process", description: "Step-by-step guidance from consultation to departure" },
+  { label: "Visa Guidance", href: "/study-abroad/south-korea/visa-guidance", description: "D-2 / D-4 visa information and disclaimers" },
+  { label: "Book a Consultation", href: "/apply", description: "Start an eligibility assessment or book a consultation" },
+];
+
+export default function KatunayakeLocationPage() {
   return (
     <>
       <SchemaMarkup
         schema={[
           localBusinessSchema(location),
-          webPageSchema({ path: "/locations/chilaw", title: "Hospitality Training Center in Chilaw", description: "Carolina Academy's Hospitality Training Center in Chilaw." }),
+          webPageSchema({ path: "/locations/katunayake", title: "Study Abroad Office in Katunayake", description: "Carolina Academy's Study Abroad Office in Katunayake." }),
         ]}
       />
-      <Breadcrumbs items={[{ name: "Hospitality Training Center — Chilaw", path: "/locations/chilaw" }]} />
+      <Breadcrumbs items={[{ name: "Study Abroad Office — Katunayake", path: "/locations/katunayake" }]} />
 
       <section className="bg-navy py-16 text-white sm:py-20">
         <div className="container">
-          <p className="mb-3 text-xs font-bold uppercase tracking-widest text-gold">Hospitality Training Center</p>
-          <h1 className="font-heading text-4xl font-extrabold sm:text-5xl">Carolina Academy Training Centre in Chilaw</h1>
+          <p className="mb-3 text-xs font-bold uppercase tracking-widest text-gold">Study Abroad Office</p>
+          <h1 className="font-heading text-4xl font-extrabold sm:text-5xl">Study Abroad Office in Katunayake</h1>
           <p className="mt-4 max-w-2xl text-white/80">
-            Carolina Academy&apos;s Hospitality Training Center is located at Carolina Beach Resort in Chilaw, on
-            Sri Lanka&apos;s west coast — this is where practical vocational and hospitality training takes place.
+            Carolina Academy&apos;s Study Abroad Office in Katunayake is a consultation office for university
+            applications, study-abroad guidance and visa-document support — including our South Korea study
+            pathways.
           </p>
           <p className="mt-3 max-w-2xl text-sm text-white/60">
-            Looking for study-abroad guidance instead? Visit our{" "}
-            <Link href="/locations/katunayake" className="font-semibold text-gold hover:underline">
-              Study Abroad Office in Katunayake
+            Looking for hands-on vocational training instead? Visit our{" "}
+            <Link href="/locations/chilaw" className="font-semibold text-gold hover:underline">
+              Hospitality Training Center in Chilaw
             </Link>
             .
           </p>
+          <div className="mt-8">
+            <WhatsAppButton message={whatsappMessages.southKorea} source="katunayake-hero" label="Message the Study Abroad Office" />
+          </div>
         </div>
       </section>
 
@@ -97,26 +110,31 @@ export default function ChilawLocationPage() {
 
       <section className="bg-surface-off py-16 sm:py-20">
         <div className="container">
-          <SectionHeading eyebrow="This Location" title="Facilities at This Location" />
+          <SectionHeading eyebrow="This Location" title="About This Office" />
           <p className="mt-4 max-w-2xl text-ink-muted">
-            This training centre includes classroom facilities and a practical training kitchen within Carolina
-            Beach Resort&apos;s hospitality environment. See the{" "}
-            <Link href="/facilities" className="font-semibold text-royal hover:underline">
-              Facilities
-            </Link>{" "}
-            page for a full overview.
+            The Katunayake office provides consultation space for study-abroad guidance appointments — university
+            and programme selection, application support, document preparation and visa-document preparation
+            support. It does not deliver hands-on vocational training; practical courses are conducted at the{" "}
+            <Link href="/locations/chilaw" className="font-semibold text-royal hover:underline">
+              Hospitality Training Center in Chilaw
+            </Link>
+            .
           </p>
         </div>
       </section>
 
       <section className="py-16 sm:py-20">
         <div className="container">
-          <SectionHeading eyebrow="Courses" title="Courses Available at This Location" />
+          <SectionHeading eyebrow="Services" title="Services Available at This Location" />
           <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {courses.map((course) => (
-              <li key={course.id}>
-                <Link href={`/courses/${course.slug}`} className="block rounded-xl border border-border bg-white p-4 text-sm font-medium text-navy hover:border-royal hover:text-royal">
-                  {course.shortTitle}
+            {services.map((service) => (
+              <li key={service.href}>
+                <Link
+                  href={service.href}
+                  className="block rounded-xl border border-border bg-white p-4 text-sm font-medium text-navy hover:border-royal hover:text-royal"
+                >
+                  {service.label}
+                  <span className="mt-1 block text-xs font-normal text-ink-muted">{service.description}</span>
                 </Link>
               </li>
             ))}
@@ -128,9 +146,9 @@ export default function ChilawLocationPage() {
         <div className="container">
           <SectionHeading eyebrow="Nearby" title="Nearby Landmarks" />
           <p className="mt-4 max-w-2xl text-ink-muted">
-            Carolina Academy is located within Carolina Beach Resort on Ambakandawila Road, Chilaw — a coastal
-            town on Sri Lanka&apos;s western coast. Specific directions from major landmarks will be added here once
-            confirmed.
+            Katunayake is home to Bandaranaike International Airport (BIA), Sri Lanka&apos;s main international
+            gateway — convenient for students preparing for departure. Specific directions from major landmarks
+            will be added here once confirmed.
           </p>
         </div>
       </section>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import { organisation } from "@/content/organisation";
+import { organisation, locations } from "@/content/organisation";
 import { footerExplore, footerSupport, footerLegal } from "@/components/layout/nav-data";
 
 export function Footer() {
@@ -51,11 +51,19 @@ export function Footer() {
 
         <div>
           <h3 className="mb-4 font-heading text-sm font-bold uppercase tracking-wide text-white">Contact</h3>
-          <ul className="flex flex-col gap-3 text-sm">
-            <li className="flex items-start gap-2.5">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-              <span>{organisation.address.full}</span>
-            </li>
+          <ul className="flex flex-col gap-4 text-sm">
+            {locations.map((location) => (
+              <li key={location.id} className="flex items-start gap-2.5">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+                <span>
+                  <Link href={`/locations/${location.slug}`} className="font-semibold text-white transition-colors hover:text-gold">
+                    {location.name}
+                  </Link>
+                  <br />
+                  {location.full}
+                </span>
+              </li>
+            ))}
             <li className="flex items-center gap-2.5">
               <Phone className="h-4 w-4 shrink-0 text-gold" />
               <a href={organisation.telephoneHref} className="transition-colors hover:text-gold">

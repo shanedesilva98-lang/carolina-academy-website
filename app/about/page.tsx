@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CheckCircle2, FileCheck2 } from "lucide-react";
+import { CheckCircle2, FileCheck2, MapPin } from "lucide-react";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SchemaMarkup } from "@/components/seo/SchemaMarkup";
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -10,7 +10,7 @@ import { DisclaimerBox } from "@/components/shared/DisclaimerBox";
 import { VerificationBadge } from "@/components/shared/VerificationBadge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { organisation } from "@/content/organisation";
+import { organisation, locations } from "@/content/organisation";
 import { leadership, trainers } from "@/content/team";
 import { buildMetadata } from "@/lib/metadata";
 import { webPageSchema, personSchema } from "@/lib/schema";
@@ -138,10 +138,28 @@ export default function AboutPage() {
 
       <section className="py-16 sm:py-20">
         <div className="container">
-          <SectionHeading eyebrow="Facilities" title="Where Training Happens" />
-          <p className="mt-4 max-w-2xl text-ink-muted">
-            Practical training takes place at Carolina Beach Resort, giving students exposure to a genuine
-            hospitality operating environment. See the{" "}
+          <SectionHeading
+            eyebrow="Where We Operate"
+            title="Our Locations"
+            description="Carolina Academy operates from two locations in Sri Lanka, each serving a different part of the student journey."
+          />
+          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {locations.map((location) => (
+              <Link
+                key={location.id}
+                href={`/locations/${location.slug}`}
+                className="group rounded-2xl border border-border bg-white p-6 shadow-soft transition-shadow hover:shadow-lift"
+              >
+                <MapPin className="h-6 w-6 text-royal" aria-hidden="true" />
+                <h3 className="mt-3 font-heading text-lg font-bold text-navy group-hover:text-royal">{location.name}</h3>
+                <p className="mt-1 text-sm text-ink-muted">{location.role}</p>
+                <p className="mt-3 text-sm font-medium text-ink-muted">{location.full}</p>
+              </Link>
+            ))}
+          </div>
+          <p className="mt-6 max-w-2xl text-ink-muted">
+            Practical training takes place at the Hospitality Training Center in Chilaw, giving students exposure
+            to a genuine hospitality operating environment. See the{" "}
             <Link href="/facilities" className="font-semibold text-royal hover:underline">
               Facilities
             </Link>{" "}

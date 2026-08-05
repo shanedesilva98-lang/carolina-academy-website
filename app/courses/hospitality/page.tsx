@@ -43,8 +43,8 @@ export default function HospitalityPage() {
           <h1 className="font-heading text-4xl font-extrabold sm:text-5xl">Hospitality Training</h1>
           <p className="mt-4 max-w-2xl text-white/80">
             Carolina Academy&apos;s hospitality faculty combines practical industry training with hotel-based exposure
-            at Carolina Beach Resort, preparing students for entry-level careers across pastry, food service and
-            accommodation operations.
+            at our Hospitality Training Center, Carolina Beach Resort, preparing students for entry-level careers
+            across pastry, food service and accommodation operations.
           </p>
         </div>
       </section>

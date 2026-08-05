@@ -29,7 +29,7 @@ const factSheet = [
   { icon: Award, label: "Qualification", value: course.qualificationLabel },
   { icon: Clock, label: "Duration", value: course.duration },
   { icon: Calendar, label: "Next Intake", value: course.nextIntake },
-  { icon: MapPin, label: "Training Venue", value: course.trainingVenue },
+  { icon: MapPin, label: "Training Venue", value: "Hospitality Training Center, Chilaw" },
   { icon: Wallet, label: "Course Fee", value: course.fee },
   { icon: Languages, label: "Medium", value: course.medium },
 ];

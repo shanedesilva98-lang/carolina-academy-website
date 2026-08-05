@@ -55,7 +55,8 @@ export const footerSupport: NavLink[] = [
   { label: "Visa Guidance", href: "/study-abroad/south-korea/visa-guidance" },
   { label: "Apply Now", href: "/apply" },
   { label: "Contact Us", href: "/contact" },
-  { label: "Chilaw Training Centre", href: "/locations/chilaw" },
+  { label: "Hospitality Training Center — Chilaw", href: "/locations/chilaw" },
+  { label: "Study Abroad Office — Katunayake", href: "/locations/katunayake" },
 ];
 
 export const footerLegal: NavLink[] = [
