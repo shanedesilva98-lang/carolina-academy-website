@@ -11,9 +11,14 @@ export const organisation = {
     "Carolina Academy is a private vocational training institute and study-abroad consultancy in Sri Lanka. It began as a hospitality training institute and has expanded into technical and vocational education, career-focused training and international education consultancy.",
   foundingDate: "2023-03-07",
   url: "https://carolinaacademy.lk",
-  telephone: "+94 77 395 2316",
-  telephoneHref: "tel:+94773952316",
-  whatsappNumber: "94773952316",
+  // Primary/general-enquiry number — the Hospitality Training Center line
+  // (also the TVEC-registered location). Shown in the header/announcement
+  // bar and used as the main Organization schema `telephone`. Each
+  // location's own number(s) are in `locations[].phones` below.
+  telephone: "+94 77 383 1955",
+  telephoneHref: "tel:+94773831955",
+  // WhatsApp is answered from the Study Abroad Office mobile.
+  whatsappNumber: "94716373334",
   email: "info@carolinaacademy.lk",
   emailHref: "mailto:info@carolinaacademy.lk",
   // Registered/primary address — mirrors locations[0] ("chilaw"). Kept as
@@ -81,6 +86,12 @@ export const organisation = {
  * EducationalOrganization schema and legal correspondence; both locations
  * get their own /locations/[slug] page and LocalBusiness schema.
  */
+export interface LocationPhone {
+  label: string;
+  number: string;
+  href: string;
+}
+
 export interface OrganisationLocation {
   id: "chilaw" | "katunayake";
   slug: string;
@@ -92,8 +103,11 @@ export interface OrganisationLocation {
   country: string;
   countryCode: string;
   full: string;
+  /** Primary phone (first entry of `phones`) — used wherever a single number is needed (schema.org telephone, etc.). */
   telephone: string;
   telephoneHref: string;
+  /** Every phone line for this location, in display order. Most locations have one; Katunayake has a mobile and a landline. */
+  phones: LocationPhone[];
   email: string;
   emailHref: string;
   openingHours: typeof organisation.openingHours;
@@ -113,8 +127,9 @@ export const locations: OrganisationLocation[] = [
     country: "Sri Lanka",
     countryCode: "LK",
     full: "Slot A1, Carolina Beach Resort, Ambakandawila Road, Chilaw, Sri Lanka",
-    telephone: "+94 77 395 2316",
-    telephoneHref: "tel:+94773952316",
+    telephone: "+94 77 383 1955",
+    telephoneHref: "tel:+94773831955",
+    phones: [{ label: "Mobile", number: "+94 77 383 1955", href: "tel:+94773831955" }],
     email: "info@carolinaacademy.lk",
     emailHref: "mailto:info@carolinaacademy.lk",
     openingHours: {
@@ -138,8 +153,12 @@ export const locations: OrganisationLocation[] = [
     country: "Sri Lanka",
     countryCode: "LK",
     full: "1665/A, 1st Floor, Colombo Road, Kurana, Katunayake, Sri Lanka",
-    telephone: "+94 77 395 2316",
-    telephoneHref: "tel:+94773952316",
+    telephone: "+94 71 637 3334",
+    telephoneHref: "tel:+94716373334",
+    phones: [
+      { label: "Mobile", number: "+94 71 637 3334", href: "tel:+94716373334" },
+      { label: "Landline", number: "+94 31 222 6443", href: "tel:+94312226443" },
+    ],
     email: "info@carolinaacademy.lk",
     emailHref: "mailto:info@carolinaacademy.lk",
     openingHours: {

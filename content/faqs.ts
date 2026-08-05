@@ -27,7 +27,7 @@ export const faqs: FAQ[] = [
     topic: "courses",
     question: "How do I apply for a vocational course at Carolina Academy?",
     answer:
-      "You can apply online using the Apply page, call +94 77 395 2316, email info@carolinaacademy.lk, or message Carolina Academy on WhatsApp. Staff will guide you through entry requirements and next steps for your chosen programme.",
+      "You can apply online using the Apply page, call the Hospitality Training Center on +94 77 383 1955, email info@carolinaacademy.lk, or message Carolina Academy on WhatsApp. Staff will guide you through entry requirements and next steps for your chosen programme.",
   },
   {
     id: "are-all-courses-currently-enrolling",
@@ -118,7 +118,7 @@ export const faqs: FAQ[] = [
     topic: "contact",
     question: "How can I contact Carolina Academy?",
     answer:
-      "Call +94 77 395 2316, email info@carolinaacademy.lk, or message on WhatsApp. You can also visit in person: the Hospitality Training Center at Slot A1, Carolina Beach Resort, Ambakandawila Road, Chilaw, or the Study Abroad Office at 1665/A, 1st Floor, Colombo Road, Kurana, Katunayake. Office hours are Monday to Saturday, 10:00 AM to 5:30 PM at both locations.",
+      "Call the Hospitality Training Center on +94 77 383 1955, or the Study Abroad Office on +94 71 637 3334 (mobile) or +94 31 222 6443 (landline). You can also email info@carolinaacademy.lk or message on WhatsApp. In person: the Hospitality Training Center is at Slot A1, Carolina Beach Resort, Ambakandawila Road, Chilaw; the Study Abroad Office is at 1665/A, 1st Floor, Colombo Road, Kurana, Katunayake. Office hours are Monday to Saturday, 10:00 AM to 5:30 PM at both locations.",
   },
   {
     id: "difference-between-carolina-academy-locations",

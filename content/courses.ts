@@ -133,7 +133,7 @@ export const courses: Course[] = [
       {
         question: "How do I apply?",
         answer:
-          "Use the application form on this page, call +94 77 395 2316, or message Carolina Academy on WhatsApp to begin the application process.",
+          "Use the application form on this page, call the Hospitality Training Center on +94 77 383 1955, or message Carolina Academy on WhatsApp to begin the application process.",
       },
     ],
     featuredImage: {

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Mail, MapPin, Clock } from "lucide-react";
 import { organisation, locations } from "@/content/organisation";
 import { footerExplore, footerSupport, footerLegal } from "@/components/layout/nav-data";
 
@@ -61,15 +61,18 @@ export function Footer() {
                   </Link>
                   <br />
                   {location.full}
+                  <br />
+                  {location.phones.map((phone, index) => (
+                    <span key={phone.href}>
+                      <a href={phone.href} className="transition-colors hover:text-gold">
+                        {phone.number}
+                      </a>
+                      {index < location.phones.length - 1 ? " / " : null}
+                    </span>
+                  ))}
                 </span>
               </li>
             ))}
-            <li className="flex items-center gap-2.5">
-              <Phone className="h-4 w-4 shrink-0 text-gold" />
-              <a href={organisation.telephoneHref} className="transition-colors hover:text-gold">
-                {organisation.telephone}
-              </a>
-            </li>
             <li className="flex items-center gap-2.5">
               <Mail className="h-4 w-4 shrink-0 text-gold" />
               <a href={organisation.emailHref} className="transition-colors hover:text-gold">

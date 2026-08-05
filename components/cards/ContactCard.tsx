@@ -24,13 +24,18 @@ export function ContactCard({ location = locations[0] }: { location?: Organisati
           <Phone className="mt-0.5 h-5 w-5 shrink-0 text-royal" />
           <div>
             <p className="font-heading font-bold text-navy">Telephone</p>
-            <a
-              href={location.telephoneHref}
-              onClick={() => trackEvent("telephone_click", { source: "contact-card", location: location.id })}
-              className="text-sm text-royal hover:underline"
-            >
-              {location.telephone}
-            </a>
+            {location.phones.map((phone) => (
+              <p key={phone.href} className="text-sm">
+                <a
+                  href={phone.href}
+                  onClick={() => trackEvent("telephone_click", { source: "contact-card", location: location.id, label: phone.label })}
+                  className="text-royal hover:underline"
+                >
+                  {phone.number}
+                </a>
+                {location.phones.length > 1 ? <span className="text-ink-muted"> ({phone.label})</span> : null}
+              </p>
+            ))}
           </div>
         </div>
         <div className="flex items-start gap-3">

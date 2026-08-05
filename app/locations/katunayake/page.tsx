@@ -90,9 +90,14 @@ export default function KatunayakeLocationPage() {
               </div>
               <div className="flex items-start gap-3">
                 <Phone className="mt-0.5 h-5 w-5 shrink-0 text-royal" />
-                <a href={location.telephoneHref} className="text-sm text-royal hover:underline">
-                  {location.telephone}
-                </a>
+                <div className="flex flex-col gap-0.5">
+                  {location.phones.map((phone) => (
+                    <a key={phone.href} href={phone.href} className="text-sm text-royal hover:underline">
+                      {phone.number}
+                      {location.phones.length > 1 ? <span className="text-ink-muted"> ({phone.label})</span> : null}
+                    </a>
+                  ))}
+                </div>
               </div>
               <div className="flex items-start gap-3">
                 <Mail className="mt-0.5 h-5 w-5 shrink-0 text-royal" />

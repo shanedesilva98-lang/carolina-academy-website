@@ -3,7 +3,9 @@
  * Number is sourced from NEXT_PUBLIC_WHATSAPP_NUMBER (public — safe to expose).
  */
 
-const DEFAULT_NUMBER = "94773952316";
+// Answered from the Study Abroad Office mobile — keep in sync with
+// content/organisation.ts's `whatsappNumber`.
+const DEFAULT_NUMBER = "94716373334";
 
 export function getWhatsAppNumber(): string {
   return process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || DEFAULT_NUMBER;

@@ -46,7 +46,8 @@ function studentConfirmationEmail(payload: LeadFormPayload): { subject: string; 
       <p>Dear ${escapeHtml(name)},</p>
       <p>Thank you for reaching out to Carolina Academy. We have received your submission and a member of our team
       will contact you shortly, usually within 1–2 working days (Monday to Saturday, 10:00 AM – 5:30 PM).</p>
-      <p>If your enquiry is urgent, you can call +94 77 395 2316 or message us on WhatsApp.</p>
+      <p>If your enquiry is urgent, you can call the Hospitality Training Center on +94 77 383 1955, the Study Abroad
+      Office on +94 71 637 3334, or message us on WhatsApp.</p>
       <p>Warm regards,<br/>Carolina Academy<br/>Hospitality Training Center — Slot A1, Carolina Beach Resort, Ambakandawila Road, Chilaw, Sri Lanka<br/>Study Abroad Office — 1665/A, 1st Floor, Colombo Road, Kurana, Katunayake, Sri Lanka</p>
     `,
   };
