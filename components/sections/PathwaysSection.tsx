@@ -21,7 +21,10 @@ export function PathwaysSection() {
               ctaLabel="View Courses"
               icon={GraduationCap}
               variant="navy"
-              image={{ src: "/images/hospitality-training.svg", alt: "Student in practical vocational training at Carolina Academy" }}
+              image={{
+                src: "/images/pathways/hospitality-practical-training.jpg",
+                alt: "Carolina Academy trainer demonstrating table-service technique to hospitality students during practical training",
+              }}
             />
           </FadeIn>
           <FadeIn delay={0.1}>
