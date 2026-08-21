@@ -6,6 +6,7 @@ import { SchemaMarkup } from "@/components/seo/SchemaMarkup";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { DisclaimerBox } from "@/components/shared/DisclaimerBox";
 import { LastUpdated } from "@/components/shared/LastUpdated";
+import { VerificationBadge } from "@/components/shared/VerificationBadge";
 import { FAQAccordion } from "@/components/shared/FAQAccordion";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { UniversityCard } from "@/components/cards/UniversityCard";
@@ -38,6 +39,71 @@ const applicationDocuments = [
   "Financial evidence / proof of funds documentation",
   "Statement of purpose (where required)",
   "Recommendation letters (where required)",
+];
+
+interface UniversityDocItem {
+  text: string;
+  note?: string;
+  conditional?: boolean;
+}
+
+interface UniversityChecklist {
+  code: string;
+  title: string;
+  items: UniversityDocItem[];
+}
+
+/**
+ * Example admission-document checklist from one Korean university, used to
+ * illustrate what a university (as opposed to the embassy) typically asks
+ * for. Every university sets its own requirements — see the disclaimer
+ * rendered alongside this data. Not to be confused with the D-2/D-4-1 visa
+ * document checklists on the Visa Guidance page, which are embassy
+ * requirements for the visa application itself.
+ */
+const universityDocChecklistBase: UniversityDocItem[] = [
+  { text: "Application form", note: "Original, in the prescribed format of the institution" },
+  { text: "Passport-size photograph", note: "Original, 2 copies (3.5cm × 4.5cm, colour)" },
+  { text: "Passport copy", note: "Copy; passport must be valid for at least 6 months" },
+  {
+    text: "Final educational qualification (high school or higher): graduation certificate and academic transcript",
+    note: "Original, 1 copy each. Apostille or consular authentication required for countries outside the Apostille Convention. Only documents issued within 6 months of the visa application date are typically accepted.",
+  },
+  {
+    text: "Bank balance certificate",
+    note: "Original, issued within 30 days of the visa application date. The example university required the account to be in the student's name with a minimum balance of KRW 10,000,000; if using a parent's account, a family relationship certificate must also be submitted.",
+  },
+  {
+    text: "Proof of financial capability of the financial sponsor (parents)",
+    note: "Original, notarised if translated — employment certificate, business registration certificate, and salary statement or income proof, each clearly stating monthly or annual income.",
+  },
+  { text: "Birth certificate and family relationship certificate", note: "Original, 1 copy each; notarised if translated" },
+  { text: "Identification documents (applicant and parents)", note: "Copy, 1 copy" },
+  {
+    text: "Korean-language proficiency certificate and gap-period supporting documents",
+    note: "If more than one year has passed since graduation from the applicant's last educational institution, documents verifying that period must also be submitted.",
+    conditional: true,
+  },
+];
+
+const universityChecklists: UniversityChecklist[] = [
+  {
+    code: "D-4-1",
+    title: "D-4-1 (Korean Language Program)",
+    items: universityDocChecklistBase,
+  },
+  {
+    code: "D-2",
+    title: "D-2 (Degree Program)",
+    items: [
+      ...universityDocChecklistBase.slice(0, 8),
+      {
+        text: "Official TOPIK score report, or an official IELTS, TOEFL or TOEIC score certificate",
+        note: "Required in addition to the documents above, for direct degree-programme applicants (Korean-medium or English-medium track).",
+      },
+      ...universityDocChecklistBase.slice(8),
+    ],
+  },
 ];
 
 export default function SouthKoreaPage() {
@@ -193,6 +259,59 @@ export default function SouthKoreaPage() {
             Exact document requirements vary by university and visa type. Confirm the current list with your
             target institution and the relevant embassy or immigration authority.
           </p>
+        </div>
+      </section>
+
+      {/* University-specific document checklist (example) */}
+      <section id="university-documents" className="scroll-mt-24 py-16 sm:py-20">
+        <div className="container">
+          <SectionHeading
+            eyebrow="Example Checklist"
+            title="What Does a University Ask For?"
+            description="A university's own admission-document checklist is separate from the embassy's visa-document checklist — you typically submit these to the university first to receive a Certificate of Admission, then use that to apply for your visa."
+          />
+          <DisclaimerBox title="This is one university's checklist, not a universal standard" className="mt-8">
+            The list below reflects the published admission-document requirements of one Korean university that
+            Carolina Academy has worked with. It is shown as an example only — every university sets its own
+            document requirements, and they can change. Always confirm the exact, current list with your specific
+            target university&apos;s admissions office before preparing documents. For the separate embassy visa
+            document checklist, see{" "}
+            <Link href="/study-abroad/south-korea/visa-guidance#document-checklists" className="font-semibold text-royal hover:underline">
+              Visa Guidance
+            </Link>
+            .
+          </DisclaimerBox>
+
+          <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2">
+            {universityChecklists.map((checklist) => (
+              <Card key={checklist.code}>
+                <CardContent className="flex flex-col gap-4 p-6">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <VerificationBadge kind="requires-confirmation" />
+                    <LastUpdated date="2026-08-21" />
+                  </div>
+                  <h3 className="font-heading text-lg font-bold text-navy">{checklist.title} — Example University Requirements</h3>
+                  <ol className="flex flex-col gap-3 text-sm text-ink-muted">
+                    {checklist.items.map((item, index) => (
+                      <li key={item.text} className="flex items-start gap-2.5">
+                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-surface-soft text-xs font-bold text-royal">
+                          {index + 1}
+                        </span>
+                        <span>
+                          <span className="font-medium text-navy">{item.text}</span>
+                          {item.conditional ? <span className="ml-1.5 text-xs font-semibold text-royal">(if applicable)</span> : null}
+                          {item.note ? <span className="block text-xs leading-relaxed text-ink-muted">{item.note}</span> : null}
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+                  <p className="mt-1 text-xs italic text-ink-muted">
+                    Submitted documents are typically not returned once submitted, at this example university.
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SchemaMarkup } from "@/components/seo/SchemaMarkup";
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -183,6 +184,14 @@ export default function VisaGuidancePage() {
             title="What Documents Are Required?"
             description="Based on the Republic of Korea Visa Requirements Checklist for D-2 (Study) and D-4-1 (Korean Language Study) applications. Requirements can change without notice — treat this as a starting point, not a final list."
           />
+          <p className="mt-4 max-w-2xl text-sm text-ink-muted">
+            These are the documents the embassy asks for when you apply for the visa itself. Before that, your
+            chosen university will ask for its own set of admission documents — see an{" "}
+            <Link href="/study-abroad/south-korea#university-documents" className="font-semibold text-royal hover:underline">
+              example university document checklist
+            </Link>
+            .
+          </p>
           <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2">
             {visaChecklists.map((checklist) => (
               <Card key={checklist.code}>
