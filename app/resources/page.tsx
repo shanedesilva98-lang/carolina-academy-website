@@ -1,4 +1,5 @@
-import { Download, FileText } from "lucide-react";
+import Link from "next/link";
+import { Download, FileText, ArrowRight } from "lucide-react";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SchemaMarkup } from "@/components/seo/SchemaMarkup";
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -16,10 +17,22 @@ export const metadata = buildMetadata({
   path: "/resources",
 });
 
-const resources = [
+interface ResourceItem {
+  title: string;
+  description: string;
+  available: boolean;
+  href?: string;
+}
+
+const resources: ResourceItem[] = [
   { title: "Course Application Guide", description: "How to apply for a vocational course at Carolina Academy, step by step.", available: false },
   { title: "Study-Abroad Checklist", description: "A general checklist to help you prepare for a study-abroad application.", available: false },
-  { title: "Korea Visa-Document Checklist", description: "An overview of documents commonly required for South Korea student visa applications.", available: false },
+  {
+    title: "Korea Visa-Document Checklist",
+    description: "Detailed D-2 and D-4-1 document checklists, based on the official Republic of Korea visa requirements forms.",
+    available: true,
+    href: "/study-abroad/south-korea/visa-guidance#document-checklists",
+  },
   { title: "Proof-of-Funds Guide", description: "Understanding financial evidence requirements for study-abroad visa applications.", available: false },
   { title: "Academic-Document Legalisation Guide", description: "Notarisation, apostille and translation guidance for academic documents.", available: false },
   { title: "Pre-Departure Checklist", description: "Practical preparation steps before travelling to study abroad.", available: false },
@@ -45,26 +58,38 @@ export default function ResourcesPage() {
         <div className="container">
           <SectionHeading eyebrow="Downloads" title="Guides & Checklists" />
           <p className="mt-4 max-w-2xl text-sm text-ink-muted">
-            Downloadable PDF versions of these guides are being prepared. This page shows the planned resource
-            library structure — check back for downloadable files, or contact Carolina Academy directly for
-            current guidance.
+            Some guides are available directly on the relevant page now (linked below); downloadable PDF versions
+            of the rest are being prepared. Contact Carolina Academy directly for current guidance in the
+            meantime.
           </p>
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {resources.map((resource) => (
-              <Card key={resource.title} className="flex flex-col">
-                <CardContent className="flex flex-1 flex-col gap-3 p-6">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-surface-soft text-royal">
-                    <FileText className="h-5 w-5" />
-                  </span>
-                  <h3 className="font-heading text-base font-bold text-navy">{resource.title}</h3>
-                  <p className="flex-1 text-sm text-ink-muted">{resource.description}</p>
-                  <Badge variant={resource.available ? "success" : "outline"} className="w-fit">
-                    <Download className="h-3.5 w-3.5" />
-                    {resource.available ? "Download PDF" : "Coming Soon"}
-                  </Badge>
-                </CardContent>
-              </Card>
-            ))}
+            {resources.map((resource) => {
+              const badge = (
+                <Badge variant={resource.available ? "success" : "outline"} className="w-fit">
+                  {resource.href ? <ArrowRight className="h-3.5 w-3.5" /> : <Download className="h-3.5 w-3.5" />}
+                  {resource.available ? (resource.href ? "View Checklist" : "Download PDF") : "Coming Soon"}
+                </Badge>
+              );
+
+              return (
+                <Card key={resource.title} className="flex flex-col">
+                  <CardContent className="flex flex-1 flex-col gap-3 p-6">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-surface-soft text-royal">
+                      <FileText className="h-5 w-5" />
+                    </span>
+                    <h3 className="font-heading text-base font-bold text-navy">{resource.title}</h3>
+                    <p className="flex-1 text-sm text-ink-muted">{resource.description}</p>
+                    {resource.href ? (
+                      <Link href={resource.href} className="w-fit">
+                        {badge}
+                      </Link>
+                    ) : (
+                      badge
+                    )}
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>

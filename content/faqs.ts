@@ -100,6 +100,13 @@ export const faqs: FAQ[] = [
       "A D-2 visa is generally associated with degree-level study at a Korean university, while a D-4 visa is generally associated with language-training programmes. Exact eligibility and requirements are set by Korean immigration authorities and can change — always confirm with the latest official guidance. See the Visa Guidance page for more detail and disclaimers.",
   },
   {
+    id: "visa-document-checklist",
+    topic: "visa",
+    question: "What documents are required for a D-2 or D-4-1 student visa?",
+    answer:
+      "Commonly required documents include a completed visa application form, passport and biographic-page copy, national ID copy, birth certificate with English translation, a cover letter on your study plan, academic transcripts certified by Sri Lanka's Ministry of Foreign Affairs, a bank balance confirmation letter, a Tuberculosis medical report, a police report, and your Certificate of Admission with payment receipt. D-2 applicants also need a TOPIK, TOEIC, TOEFL or IELTS score depending on their study track; D-4-1 applicants sit an English essay test after applying. See the full checklists on the Visa Guidance page — requirements can change, so always confirm the current list with the embassy.",
+  },
+  {
     id: "visa-processing-time",
     topic: "visa",
     question: "How long does the South Korea student visa process take?",
