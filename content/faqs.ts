@@ -13,7 +13,7 @@ export const faqs: FAQ[] = [
     topic: "general",
     question: "Is Carolina Academy a registered institution?",
     answer:
-      "Yes. Carolina Academy is registered with the Tertiary and Vocational Education Commission (TVEC) of Sri Lanka, Registration No. P13/0095. Supporting documentation is available on the Accreditation section of the About page.",
+      "Yes. Carolina Academy is registered with the Tertiary and Vocational Education Commission (TVEC) of Sri Lanka, Registration No. P13/0095, currently valid until 7 July 2027. The scanned registration letter and the specific course(s) it covers are available on the Accreditation section of the About page.",
   },
   {
     id: "where-is-carolina-academy-located",

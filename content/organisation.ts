@@ -45,6 +45,12 @@ export const organisation = {
     label: "TVEC Registered Institution",
     registrationNumber: "P13/0095",
     displayText: "TVEC Registered Institution – Registration No. P13/0095",
+    // From the TVEC Renewal Registration letter (Ref. III/05/07/01, dated 11 Jul 2025).
+    initialRegistrationDate: "2023-06-27",
+    validUntil: "2027-07-07",
+    registeredCourses: ["Certificate for Baker"],
+    documentUrl: "/documents/tvec-registration-certificate.pdf",
+    documentLabel: "TVEC Renewal Registration Letter (11 July 2025)",
   },
   vision:
     "To be an eminent private training institute providing a creative and competent workforce in technical and vocational disciplines for national and international industries.",

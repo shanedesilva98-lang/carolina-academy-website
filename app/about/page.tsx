@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CheckCircle2, FileCheck2, MapPin } from "lucide-react";
+import { CheckCircle2, FileCheck2, MapPin, Download, CalendarClock } from "lucide-react";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SchemaMarkup } from "@/components/seo/SchemaMarkup";
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -14,6 +14,7 @@ import { organisation, locations } from "@/content/organisation";
 import { leadership, trainers } from "@/content/team";
 import { buildMetadata } from "@/lib/metadata";
 import { webPageSchema, personSchema } from "@/lib/schema";
+import { formatDate } from "@/lib/utils";
 
 export const metadata = buildMetadata({
   title: "About Carolina Academy | TVEC-Registered Training Institute",
@@ -203,11 +204,43 @@ export default function AboutPage() {
                     <p className="mt-1 text-sm text-ink-muted">Registration No. {organisation.tvec.registrationNumber}</p>
                   </div>
                 </div>
-                <DisclaimerBox variant="info" title="Supporting documentation">
-                  Supporting TVEC registration documents will be uploaded here once available for public
-                  reference. Individual course NVQ accreditation status is confirmed separately on each course
+
+                <dl className="grid grid-cols-1 gap-3 rounded-xl border border-border bg-surface-off p-4 text-sm sm:grid-cols-2">
+                  <div>
+                    <dt className="font-heading font-semibold text-navy">Initial registration</dt>
+                    <dd className="text-ink-muted">{formatDate(organisation.tvec.initialRegistrationDate)}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-heading font-semibold text-navy">Current registration valid until</dt>
+                    <dd className="text-ink-muted">{formatDate(organisation.tvec.validUntil)}</dd>
+                  </div>
+                  <div className="sm:col-span-2">
+                    <dt className="font-heading font-semibold text-navy">Course(s) covered by this registration</dt>
+                    <dd className="text-ink-muted">{organisation.tvec.registeredCourses.join(", ")}</dd>
+                  </div>
+                </dl>
+
+                <a
+                  href={organisation.tvec.documentUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-fit items-center gap-2 rounded-full border border-royal/30 bg-white px-4 py-2 text-sm font-semibold text-royal transition-colors hover:bg-surface-soft"
+                >
+                  <Download className="h-4 w-4" aria-hidden="true" />
+                  View {organisation.tvec.documentLabel}
+                </a>
+
+                <DisclaimerBox variant="info" title="How to read this registration">
+                  This registration currently covers the course(s) listed above. Other Carolina Academy
+                  programmes are shown on their own course pages with their individual NVQ/TVEC accreditation
+                  status — do not assume a programme is TVEC-accredited unless stated on that specific course
                   page.
                 </DisclaimerBox>
+
+                <p className="inline-flex items-center gap-1.5 text-xs text-ink-muted">
+                  <CalendarClock className="h-3.5 w-3.5" aria-hidden="true" /> Document added to this page:{" "}
+                  {formatDate("2026-08-22")}
+                </p>
               </CardContent>
             </Card>
           </div>
