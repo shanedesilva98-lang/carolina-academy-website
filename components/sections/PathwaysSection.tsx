@@ -22,8 +22,8 @@ export function PathwaysSection() {
               icon={GraduationCap}
               variant="navy"
               image={{
-                src: "/images/pathways/hospitality-practical-training.jpg",
-                alt: "Carolina Academy trainer demonstrating table-service technique to hospitality students during practical training",
+                src: "/images/pathways/practical-training-kitchen.jpg",
+                alt: "Carolina Academy trainers and hospitality students in chef whites in the practical training kitchen",
               }}
             />
           </FadeIn>
