@@ -35,7 +35,10 @@ export function PathwaysSection() {
               ctaLabel="Explore Study Abroad"
               icon={Globe2}
               variant="royal"
-              image={{ src: "/images/south-korea-campus.svg", alt: "South Korea university campus, a study-abroad destination supported by Carolina Academy" }}
+              image={{
+                src: "/images/pathways/south-korea-campus.png",
+                alt: "Students walking on a South Korean university campus with the city skyline and Namsan Tower in the background",
+              }}
             />
           </FadeIn>
         </div>
