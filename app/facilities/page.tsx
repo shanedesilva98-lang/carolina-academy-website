@@ -27,7 +27,7 @@ const sections = [
   {
     title: "Hospitality Training Center — Carolina Beach Resort",
     description: "Practical training takes place within the working hospitality environment at Carolina Beach Resort, Ambakandawila Road, Chilaw.",
-    images: [{ src: "/images/carolina-beach-resort.svg", alt: "Carolina Beach Resort, home of Carolina Academy's Hospitality Training Center" }],
+    images: [{ src: "/images/facilities/carolina-beach-resort.jpg", alt: "Carolina Beach Resort, home of Carolina Academy's Hospitality Training Center" }],
   },
   {
     title: "Consultation Areas",

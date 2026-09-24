@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 const facilities = [
   { src: "/images/facilities-classroom.svg", alt: "Training classroom at Carolina Academy" },
   { src: "/images/facilities-kitchen.svg", alt: "Practical training kitchen at Carolina Academy" },
-  { src: "/images/carolina-beach-resort.svg", alt: "Carolina Beach Resort hospitality training environment" },
+  { src: "/images/facilities/carolina-beach-resort.jpg", alt: "Carolina Beach Resort hospitality training environment" },
   { src: "/images/facilities-consultation-area.svg", alt: "Study-abroad consultation area at Carolina Academy" },
 ];
 

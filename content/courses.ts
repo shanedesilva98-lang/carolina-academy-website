@@ -149,7 +149,7 @@ export const courses: Course[] = [
         src: "/images/pathways/practical-training-kitchen.jpg",
         alt: "Carolina Academy trainers and hospitality students in chef whites in the practical training kitchen",
       },
-      { src: "/images/carolina-beach-resort.svg", alt: "Carolina Beach Resort, the practical training venue" },
+      { src: "/images/facilities/carolina-beach-resort.jpg", alt: "Carolina Beach Resort, the practical training venue" },
     ],
     applicationUrl: "/apply?course=pastry-bakery-nvq-level-3-4",
     whatsappMessage:
