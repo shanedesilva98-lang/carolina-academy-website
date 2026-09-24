@@ -137,8 +137,8 @@ export const courses: Course[] = [
       },
     ],
     featuredImage: {
-      src: "/images/pastry-bakery-training.svg",
-      alt: "Student practising pastry and bakery techniques in a training kitchen",
+      src: "/images/courses/pastry-bakery-training.png",
+      alt: "Carolina Academy pastry and bakery trainees reviewing a plated selection of finished baked goods with their trainer",
     },
     gallery: [
       { src: "/images/pastry-bakery-training.svg", alt: "Pastry and bakery practical training session" },
