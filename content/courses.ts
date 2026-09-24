@@ -141,8 +141,14 @@ export const courses: Course[] = [
       alt: "Carolina Academy pastry and bakery trainees reviewing a plated selection of finished baked goods with their trainer",
     },
     gallery: [
-      { src: "/images/pastry-bakery-training.svg", alt: "Pastry and bakery practical training session" },
-      { src: "/images/training-kitchen.svg", alt: "Training kitchen used for practical hospitality classes" },
+      {
+        src: "/images/courses/pastry-bakery-training.png",
+        alt: "Carolina Academy pastry and bakery trainees reviewing a plated selection of finished baked goods with their trainer",
+      },
+      {
+        src: "/images/pathways/practical-training-kitchen.jpg",
+        alt: "Carolina Academy trainers and hospitality students in chef whites in the practical training kitchen",
+      },
       { src: "/images/carolina-beach-resort.svg", alt: "Carolina Beach Resort, the practical training venue" },
     ],
     applicationUrl: "/apply?course=pastry-bakery-nvq-level-3-4",

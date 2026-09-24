@@ -10,7 +10,10 @@ const featured = [
     title: "Pastry & Bakery NVQ Level 3/4",
     description: "Carolina Academy's flagship hands-on programme, trained at Carolina Beach Resort.",
     href: "/courses/pastry-bakery-nvq-level-3-4",
-    image: { src: "/images/pastry-bakery-training.svg", alt: "Pastry and bakery NVQ training" },
+    image: {
+      src: "/images/courses/pastry-bakery-training.png",
+      alt: "Carolina Academy pastry and bakery trainees reviewing a plated selection of finished baked goods with their trainer",
+    },
     status: "active" as const,
   },
   {
