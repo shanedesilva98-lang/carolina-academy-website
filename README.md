@@ -8,7 +8,7 @@ study-abroad consultancy based in Chilaw, Sri Lanka.
 This site positions Carolina Academy around two service divisions:
 
 1. **Vocational & Career Training** — competency-based, practical programmes (flagship: Pastry & Bakery NVQ
-   Level 3/4), plus a growing Technology (welding) and Health Sciences faculty.
+   Level 3/4), plus growing Technology (refrigeration & air conditioning, welding), Health Sciences and Foreign Employment Based Training divisions.
 2. **Study Abroad** — application, documentation and pre-departure guidance, currently focused on South Korea.
 
 Every programme and university entry is labelled honestly as **Active**, **Upcoming**, **Under Development**,

@@ -6,14 +6,8 @@
 
 export type CourseStatus = "active" | "upcoming" | "under-development";
 
-export type CourseCategory =
-  | "hospitality"
-  | "pastry-bakery"
-  | "food-beverage-service"
-  | "housekeeping"
-  | "technology"
-  | "welding"
-  | "health-sciences";
+/** The four main course divisions used across the courses hub, filters and navigation. */
+export type CourseCategory = "hospitality" | "technology" | "health-sciences" | "foreign-employment";
 
 export type QualificationType =
   | "nvq"

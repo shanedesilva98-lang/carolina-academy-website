@@ -134,6 +134,34 @@ export const faqs: FAQ[] = [
     answer:
       "The Hospitality Training Center in Chilaw, at Carolina Beach Resort, is where practical vocational and hospitality courses are delivered. The Study Abroad Office in Katunayake is a consultation office for university applications, study-abroad guidance and visa-document support and does not deliver hands-on training.",
   },
+  {
+    id: "foreign-employment-job-guarantee",
+    topic: "foreign-employment",
+    question: "Do the Foreign Employment Based Training Programmes guarantee a job abroad?",
+    answer:
+      "No. Carolina Academy provides training and assessment preparation only. Employment, visas, external examinations and overseas deployment are decided by employers, examining bodies and government authorities, and placement is not guaranteed.",
+  },
+  {
+    id: "foreign-employment-certificate",
+    topic: "foreign-employment",
+    question: "Are these programmes NVQ or government-licensed qualifications?",
+    answer:
+      "No. Candidates who pass the internal assessment may receive a Carolina Academy Certificate of Completion stating the training hours. It is not an NVQ award, a UAE government licence or a substitute for a recognised external qualification, which may have its own course-hour, provider and prerequisite rules.",
+  },
+  {
+    id: "foreign-employment-destination",
+    topic: "foreign-employment",
+    question: "Which country do these programmes prepare candidates for?",
+    answer:
+      "Lifeguard Training and Public Area Housekeeping are currently designed around entry-level roles in Dubai, UAE. Employer and examining-body requirements differ by country and can change, so confirm the current requirements before you enrol.",
+  },
+  {
+    id: "foreign-employment-enrolment",
+    topic: "foreign-employment",
+    question: "Are these programmes open for enrolment?",
+    answer:
+      "Programme details, fees and start dates are still being finalised, so both programmes are shown as Upcoming Programmes. Contact Carolina Academy by phone or WhatsApp to register your interest and be told when details are confirmed.",
+  },
 ];
 
 export function getFaqsByTopic(topic: FAQ["topic"]): FAQ[] {

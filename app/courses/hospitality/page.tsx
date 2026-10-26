@@ -67,6 +67,7 @@ export default function HospitalityPage() {
                 status={pastry.status}
                 icon={ChefHat}
                 image={pastry.featuredImage}
+                href={`/courses/${pastry.slug}`}
               />
             ) : null}
             {foodBeverage ? (
@@ -77,6 +78,7 @@ export default function HospitalityPage() {
                 status={foodBeverage.status}
                 icon={UtensilsCrossed}
                 image={foodBeverage.featuredImage}
+                href={`/courses/${foodBeverage.slug}`}
               />
             ) : null}
             {steward ? (
@@ -87,6 +89,7 @@ export default function HospitalityPage() {
                 status={steward.status}
                 icon={ConciergeBell}
                 image={steward.featuredImage}
+                href={`/courses/${steward.slug}`}
               />
             ) : null}
             {housekeeping ? (
@@ -97,6 +100,7 @@ export default function HospitalityPage() {
                 status={housekeeping.status}
                 icon={BedDouble}
                 image={housekeeping.featuredImage}
+                href={`/courses/${housekeeping.slug}`}
               />
             ) : null}
             {internationalCookery ? (
@@ -107,6 +111,7 @@ export default function HospitalityPage() {
                 status={internationalCookery.status}
                 icon={Soup}
                 image={internationalCookery.featuredImage}
+                href={`/courses/${internationalCookery.slug}`}
               />
             ) : null}
             {nationalCookery ? (
@@ -117,6 +122,7 @@ export default function HospitalityPage() {
                 status={nationalCookery.status}
                 icon={Utensils}
                 image={nationalCookery.featuredImage}
+                href={`/courses/${nationalCookery.slug}`}
               />
             ) : null}
           </div>

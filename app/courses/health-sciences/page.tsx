@@ -53,10 +53,10 @@ export default function HealthSciencesPage() {
 
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
             {caregiver ? (
-              <FacultyCard title="Caregiver Training" description={caregiver.overview} status={caregiver.status} icon={HeartPulse} image={caregiver.featuredImage} />
+              <FacultyCard title="Caregiver Training" description={caregiver.overview} status={caregiver.status} icon={HeartPulse} image={caregiver.featuredImage} href={`/courses/${caregiver.slug}`} />
             ) : null}
             {nurseAssistant ? (
-              <FacultyCard title="Nurse Assistant" description={nurseAssistant.overview} status={nurseAssistant.status} icon={Stethoscope} image={nurseAssistant.featuredImage} />
+              <FacultyCard title="Nurse Assistant" description={nurseAssistant.overview} status={nurseAssistant.status} icon={Stethoscope} image={nurseAssistant.featuredImage} href={`/courses/${nurseAssistant.slug}`} />
             ) : null}
           </div>
         </div>

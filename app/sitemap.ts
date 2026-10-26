@@ -11,6 +11,7 @@ const staticRoutes = [
   { path: "/courses/hospitality", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/courses/technology", priority: 0.7, changeFrequency: "monthly" as const },
   { path: "/courses/health-sciences", priority: 0.7, changeFrequency: "monthly" as const },
+  { path: "/courses/foreign-employment", priority: 0.7, changeFrequency: "monthly" as const },
   { path: "/study-abroad", priority: 0.9, changeFrequency: "weekly" as const },
   { path: "/study-abroad/south-korea", priority: 0.9, changeFrequency: "weekly" as const },
   { path: "/study-abroad/south-korea/visa-guidance", priority: 0.7, changeFrequency: "monthly" as const },

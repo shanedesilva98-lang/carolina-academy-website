@@ -1,4 +1,4 @@
-import type { Course } from "@/types/course";
+import type { Course, CourseCategory } from "@/types/course";
 
 /**
  * Course catalogue.
@@ -16,7 +16,7 @@ export const courses: Course[] = [
     slug: "pastry-bakery-nvq-level-3-4",
     title: "Pastry & Bakery NVQ Level 3/4 Course",
     shortTitle: "Pastry & Bakery NVQ Level 3/4",
-    category: "pastry-bakery",
+    category: "hospitality",
     status: "active",
     qualification: "nvq",
     qualificationLabel: "Baker / Commis I — Pastry & Bakery",
@@ -161,7 +161,7 @@ export const courses: Course[] = [
     slug: "food-and-beverage-service",
     title: "Food & Beverage Service Training",
     shortTitle: "Food & Beverage Service",
-    category: "food-beverage-service",
+    category: "hospitality",
     status: "upcoming",
     qualification: "not-yet-confirmed",
     qualificationLabel: "Qualification type to be confirmed",
@@ -200,7 +200,7 @@ export const courses: Course[] = [
     slug: "housekeeping",
     title: "Housekeeping Training",
     shortTitle: "Housekeeping",
-    category: "housekeeping",
+    category: "hospitality",
     status: "upcoming",
     qualification: "not-yet-confirmed",
     qualificationLabel: "Qualification type to be confirmed",
@@ -336,11 +336,53 @@ export const courses: Course[] = [
     updatedAt: "2026-08-04",
   },
   {
+    id: "refrigeration-ac-mechanic-nvq-3-4",
+    slug: "refrigeration-air-conditioning-mechanic-nvq-level-3-4",
+    title: "Refrigeration & Air Conditioning Mechanic NVQ Level 3/4",
+    shortTitle: "Refrigeration & A/C Mechanic",
+    category: "technology",
+    status: "upcoming",
+    qualification: "nvq",
+    qualificationLabel: "NVQ Level 3/4 — registration status to be confirmed",
+    accreditation: {
+      body: "Not yet confirmed",
+      note: "NVQ and TVEC registration details for this programme will be published once confirmed.",
+    },
+    duration: REQUIRES_CONFIRMATION,
+    schedule: REQUIRES_CONFIRMATION,
+    medium: REQUIRES_CONFIRMATION,
+    deliveryType: "on-campus",
+    location: "Chilaw, Sri Lanka",
+    fee: REQUIRES_CONFIRMATION,
+    instalments: REQUIRES_CONFIRMATION,
+    nextIntake: REQUIRES_CONFIRMATION,
+    overview:
+      "A planned NVQ Level 3/4 programme preparing students for work as a refrigeration and air-conditioning mechanic, covering the installation, servicing and fault-finding of refrigeration and air-conditioning systems as part of Carolina Academy's growing Technology faculty. Full programme details are being finalised.",
+    audience: ["Students interested in technical and industrial trades"],
+    entryRequirements: [REQUIRES_CONFIRMATION],
+    curriculum: [],
+    curriculumNote: "Full curriculum will be published once the programme is confirmed as active.",
+    practicalTraining: "Workshop-based practical training location to be confirmed.",
+    trainingVenue: REQUIRES_CONFIRMATION,
+    assessment: REQUIRES_CONFIRMATION,
+    careerOutcomes: ["Entry-level refrigeration and air-conditioning technician roles (subject to programme confirmation)"],
+    faqs: [],
+    featuredImage: {
+      src: "/images/refrigeration-ac-training.svg",
+      alt: "Refrigeration and air conditioning training placeholder image",
+    },
+    gallery: [],
+    applicationUrl: "/contact?enquiry=refrigeration-air-conditioning-mechanic",
+    whatsappMessage:
+      "Hello Carolina Academy, I would like more information about the Refrigeration & Air Conditioning Mechanic NVQ Level 3/4 programme.",
+    updatedAt: "2026-10-26",
+  },
+  {
     id: "electric-arc-welding",
     slug: "electric-arc-welding",
     title: "Electric Arc Welding",
     shortTitle: "Electric Arc Welding",
-    category: "welding",
+    category: "technology",
     status: "upcoming",
     qualification: "not-yet-confirmed",
     qualificationLabel: "Qualification type to be confirmed",
@@ -375,7 +417,7 @@ export const courses: Course[] = [
     slug: "gas-welding",
     title: "Gas Welding",
     shortTitle: "Gas Welding",
-    category: "welding",
+    category: "technology",
     status: "under-development",
     qualification: "not-yet-confirmed",
     qualificationLabel: "Qualification type to be confirmed",
@@ -409,7 +451,7 @@ export const courses: Course[] = [
     slug: "mig-welding",
     title: "MIG Welding",
     shortTitle: "MIG Welding",
-    category: "welding",
+    category: "technology",
     status: "under-development",
     qualification: "not-yet-confirmed",
     qualificationLabel: "Qualification type to be confirmed",
@@ -444,7 +486,7 @@ export const courses: Course[] = [
     slug: "tig-welding",
     title: "TIG Welding",
     shortTitle: "TIG Welding",
-    category: "welding",
+    category: "technology",
     status: "under-development",
     qualification: "not-yet-confirmed",
     qualificationLabel: "Qualification type to be confirmed",
@@ -552,6 +594,224 @@ export const courses: Course[] = [
     whatsappMessage: "Hello Carolina Academy, I would like more information about Nurse Assistant training.",
     updatedAt: "2026-08-04",
   },
+  {
+    id: "lifeguard-training-examination-preparation",
+    slug: "lifeguard-training-examination-preparation",
+    title: "Lifeguard Training & Examination Preparation",
+    shortTitle: "Lifeguard Training",
+    category: "foreign-employment",
+    status: "upcoming",
+    qualification: "in-house",
+    qualificationLabel: "Carolina Academy Certificate of Completion (not an NVQ or overseas licence)",
+    accreditation: {
+      body: "In-house",
+      note: "A Carolina Academy Certificate of Completion stating 30 guided training hours. It is not an NVQ award, a UAE government licence or a substitute for a recognised external lifeguard qualification.",
+    },
+    duration: "5 training days (30 guided hours)",
+    schedule: "5 training days × 6 guided hours, with up to 2 extra practice days where needed. Typical batch: 10–15 candidates. Start dates to be confirmed.",
+    medium: REQUIRES_CONFIRMATION,
+    deliveryType: "on-campus",
+    location: "Carolina Beach Resort, Chilaw",
+    fee: REQUIRES_CONFIRMATION,
+    instalments: REQUIRES_CONFIRMATION,
+    nextIntake: REQUIRES_CONFIRMATION,
+    overview:
+      "A short, employment-oriented lifeguard training and examination-preparation programme for candidates who already swim competently and are seeking lifeguard positions abroad, currently aimed at Dubai, UAE. It combines lifeguard theory, pool surveillance, water rescue, swimming endurance, First Aid, CPR and mock assessments. It prepares suitable candidates for employer or external examinations — it does not replace any mandatory overseas-recognised lifeguard qualification.",
+    audience: [
+      "Candidates who can already swim confidently in deep water",
+      "People seeking hotel, resort, swimming-pool or aquatic-facility lifeguard roles abroad",
+    ],
+    entryRequirements: [
+      "Able to swim continuously without assistance, with confidence in deep water",
+      "Able to tread water and perform basic surface dives; fitness and endurance are checked at an initial screening",
+      "Physically and medically fit for lifeguard duties, and able to understand basic safety instructions in English",
+      "Candidates who do not pass the initial swim screening should complete additional swimming development before admission",
+    ],
+    curriculum: [
+      {
+        category: "Module 1 — Lifeguard theory and pool safety",
+        topics: [
+          "Role and responsibilities; professional conduct; pool rules and hazards",
+          "Surveillance and scanning; drowning prevention and recognising swimmers in distress",
+          "Emergency action plans, communication, teamwork and incident reporting",
+        ],
+      },
+      {
+        category: "Module 2 — Swimming endurance and treading water",
+        topics: [
+          "Timed swimming, swimming efficiency and endurance exercises",
+          "Deep-water treading, survival floating and water confidence",
+          "Surface dives, underwater retrieval and safe swimming approaches",
+        ],
+      },
+      {
+        category: "Module 3 — Water rescue and casualty handling",
+        topics: [
+          "Safe entries, rescue approaches, conscious and distressed-swimmer rescue",
+          "Unconscious casualty recovery, rescue towing and poolside extraction",
+          "Rescue tube/buoy use, team rescue drills and simulated emergencies",
+        ],
+      },
+      {
+        category: "Module 4 — First Aid, CPR and AED",
+        topics: [
+          "Scene safety, casualty assessment and emergency-service activation",
+          "Drowning-related emergencies, rescue breathing, CPR and AED trainer practice",
+          "Choking, bleeding, shock, recovery position and suspected spinal injuries",
+          "Hands-on resuscitation training under a suitably qualified First Aid/CPR instructor",
+        ],
+      },
+      {
+        category: "Module 5 — Examination preparation",
+        topics: [
+          "Timed swim and tread-water trials, surface diving and object retrieval",
+          "Rescue approach, casualty tow, extraction and complete emergency scenarios",
+          "CPR/AED skill demonstrations, First Aid questions and mock examination feedback",
+        ],
+      },
+    ],
+    curriculumNote:
+      "Based on Carolina Academy's programme proposal. Exact swim distances, time limits, tread-water duration, retrieval depth, CPR requirements and examination sequence must be confirmed with the employer or external examining body before enrolment and final assessment.",
+    practicalTraining:
+      "Approximately 20% theory and 80% practical training. Training is planned at suitable pool facilities at Carolina Beach Resort, Chilaw, subject to operational approval. The programme requires a pool with deep-water access, a qualified lifeguard/rescue instructor, a qualified First Aid/CPR instructor, rescue equipment and CPR/AED trainer equipment.",
+    trainingVenue: "Suitable pool facilities at Carolina Beach Resort, Chilaw, Sri Lanka (subject to operational approval)",
+    assessment:
+      "Planned internal assessment of about 20% theory and 80% practical covering swim and tread-water tests, rescue, First Aid, CPR and emergency scenarios. Essential swimming, rescue and resuscitation skills are mandatory pass items — failure in a critical safety competency cannot be offset by a high overall score. Candidates who pass may receive a Carolina Academy Certificate of Completion stating the 30-hour training duration.",
+    careerOutcomes: [
+      "Preparation to attend an external lifeguard examination or an employer practical assessment, when eligible",
+      "Target roles: hotel, resort, swimming-pool and aquatic-facility lifeguard positions in Dubai, UAE — subject to employer, visa and regulatory requirements",
+    ],
+    faqs: [
+      {
+        question: "Do I need to be able to swim already?",
+        answer:
+          "Yes. This programme is for candidates who already swim competently. A swim, endurance and fitness screening is carried out before the course, and candidates who do not pass should complete additional swimming development first.",
+      },
+      {
+        question: "Is this a recognised lifeguard licence?",
+        answer:
+          "No. Passing the internal assessment earns a Carolina Academy Certificate of Completion. It is not an NVQ award, a UAE government licence or a substitute for a recognised external lifeguard qualification. External certification may have its own minimum course hours, approved training providers and prerequisites.",
+      },
+      {
+        question: "Does the course guarantee a lifeguard job abroad?",
+        answer:
+          "No. Carolina Academy provides training and examination preparation only. Employment, visas, external tests and overseas deployment depend on employers and the relevant authorities, and placement is not guaranteed.",
+      },
+      {
+        question: "How long is the programme?",
+        answer:
+          "Five training days of six guided hours each (30 hours). Up to two additional practice days may be offered where targeted correction and reassessment are needed.",
+      },
+    ],
+    featuredImage: {
+      src: "/images/lifeguard-training.svg",
+      alt: "Lifeguard training placeholder image",
+    },
+    gallery: [],
+    applicationUrl: "/contact?enquiry=lifeguard-training",
+    whatsappMessage: "Hello Carolina Academy, I would like more information about the Lifeguard Training programme.",
+    updatedAt: "2026-10-26",
+  },
+  {
+    id: "public-area-housekeeping-training",
+    slug: "public-area-housekeeping-training",
+    title: "Public Area Housekeeping Training",
+    shortTitle: "Public Area Housekeeping",
+    category: "foreign-employment",
+    status: "upcoming",
+    qualification: "in-house",
+    qualificationLabel: "Carolina Academy Certificate of Completion (not an NVQ or overseas licence)",
+    accreditation: {
+      body: "In-house",
+      note: "A Carolina Academy Certificate of Completion in Basic Public Area Housekeeping & Professional Cleaning Operations confirming 18 guided training hours. It is not an NVQ award, a UAE government licence or an externally accredited qualification.",
+    },
+    duration: "3 training days (18 guided hours)",
+    schedule: "3 consecutive training days × 6 guided hours. Typical batch: 20–25 candidates in small rotating practical groups. Start dates to be confirmed.",
+    medium: "English terminology supported by Sinhala explanations",
+    deliveryType: "on-campus",
+    location: "Carolina Beach Resort, Chilaw",
+    fee: REQUIRES_CONFIRMATION,
+    instalments: REQUIRES_CONFIRMATION,
+    nextIntake: REQUIRES_CONFIRMATION,
+    overview:
+      "An 18-hour, practice-led programme for candidates preparing for entry-level public area cleaning and housekeeping roles abroad, currently aimed at Dubai, UAE. It focuses on safe chemical handling, public washroom sanitation, floor and surface cleaning, equipment use, professional conduct and employer assessment readiness.",
+    audience: [
+      "Candidates preparing for entry-level public area attendant, washroom attendant or cleaner roles abroad",
+      "Beginners are welcome — previous cleaning experience is useful but not compulsory",
+    ],
+    entryRequirements: [
+      "Physically capable of routine cleaning work, able to follow safety instructions and willing to take part in hands-on practical assessments",
+      "Previous cleaning experience is useful but not compulsory; beginners who need extra practice complete remedial training before any employer assessment",
+    ],
+    curriculum: [
+      {
+        category: "Day 1 — Chemical safety and equipment",
+        topics: [
+          "Introduction, grooming and professional conduct (0.5 h)",
+          "PPE, hazard signs and cross-contamination controls (1 h)",
+          "Product identification, labels, Safety Data Sheets, manufacturer-approved dilution and safe storage (2 h)",
+          "Colour-coded cleaning tools, trolley preparation and equipment care (1.5 h)",
+          "Supervised identification and safety drills (1 h)",
+        ],
+      },
+      {
+        category: "Day 2 — Public washroom cleaning",
+        topics: [
+          "Washroom preparation, safety signs and PPE (0.5 h)",
+          "Cleaning toilets, urinals, washbasins, taps, mirrors, partitions and touchpoints (2 h)",
+          "Disinfection, contact times, descaling, floors, drains and safe waste handling (1.5 h)",
+          "Restocking, odour control and inspection checklists (0.5 h)",
+          "Individual cleaning drills and feedback (1.5 h)",
+        ],
+      },
+      {
+        category: "Day 3 — Public areas and assessment",
+        topics: [
+          "Floor types, sweeping, damp mopping and vacuuming (1.5 h)",
+          "Glass, furniture, corridors, lobby and entrances (1 h)",
+          "Defect reporting, trolley preparation and basic workplace English (0.5 h)",
+          "Revision (1 h)",
+          "Individual practical and short theory assessments (2 h)",
+        ],
+      },
+    ],
+    curriculumNote:
+      "Based on Carolina Academy's programme proposal. The employer's cleaning standards, chemical and equipment expectations and practical examination checklist should be confirmed before intake.",
+    practicalTraining:
+      "Approximately 20% theory and demonstration and 80% supervised practice, in small rotating groups so every candidate personally demonstrates the essential cleaning tasks. Training is planned at Carolina Academy and suitable facilities at Carolina Beach Resort, subject to operational approval.",
+    trainingVenue: "Carolina Academy and suitable facilities at Carolina Beach Resort, Chilaw, Sri Lanka (subject to operational approval)",
+    assessment:
+      "Planned assessment of a short written or oral knowledge test (30%) and observed practical work (70%), with a recommended overall pass mark of 70% and mandatory competency in chemical safety and public washroom sanitation. Unsafe chemical practices require correction and reassessment regardless of total marks.",
+    careerOutcomes: [
+      "Preparation for entry-level public area attendant, washroom attendant and cleaner roles",
+      "Target roles are in Dubai, UAE — subject to employer, visa and regulatory requirements",
+    ],
+    faqs: [
+      {
+        question: "What qualification will I receive?",
+        answer:
+          "Candidates who pass the internal assessment receive a Carolina Academy Certificate of Completion confirming 18 guided training hours. It is not an NVQ award, a UAE government licence or an externally accredited qualification.",
+      },
+      {
+        question: "Do I need previous cleaning experience?",
+        answer:
+          "No. Experience is useful but not compulsory. Beginners who need extra practice complete remedial training before any employer assessment.",
+      },
+      {
+        question: "What happens after the three days?",
+        answer:
+          "Candidates who meet the competency standard may be eligible to attend an employer interview or practical assessment where one is arranged. Employment, visas, external tests and overseas deployment depend on employer and regulatory requirements, and placement is not guaranteed.",
+      },
+    ],
+    featuredImage: {
+      src: "/images/public-area-housekeeping.svg",
+      alt: "Public area housekeeping training placeholder image",
+    },
+    gallery: [],
+    applicationUrl: "/contact?enquiry=public-area-housekeeping",
+    whatsappMessage: "Hello Carolina Academy, I would like more information about the Public Area Housekeeping Training programme.",
+    updatedAt: "2026-10-26",
+  },
 ];
 
 export function getCourseBySlug(slug: string): Course | undefined {
@@ -563,15 +823,49 @@ export function getCoursesByCategory(category: string): Course[] {
   return courses.filter((course) => course.category === category);
 }
 
-export const courseCategoryLabels: Record<string, string> = {
+/** Short division labels for filter chips and card eyebrows. Full names live in `courseDivisions`. */
+export const courseCategoryLabels: Record<CourseCategory, string> = {
   hospitality: "Hospitality",
-  "pastry-bakery": "Pastry & Bakery",
-  "food-beverage-service": "Food & Beverage Service",
-  housekeeping: "Housekeeping",
   technology: "Technology",
-  welding: "Welding",
   "health-sciences": "Health Sciences",
+  "foreign-employment": "Foreign Employment Training",
 };
+
+/** The four main course divisions, in display order. Each has a landing page at `href`. */
+export const courseDivisions: {
+  id: CourseCategory;
+  label: string;
+  href: string;
+  description: string;
+}[] = [
+  {
+    id: "hospitality",
+    label: "Hospitality",
+    href: "/courses/hospitality",
+    description:
+      "Pastry & Bakery (currently ongoing), Food & Beverage Service, Housekeeping, Steward Training, International Cookery and National Cookery.",
+  },
+  {
+    id: "technology",
+    label: "Technology",
+    href: "/courses/technology",
+    description:
+      "Refrigeration & Air Conditioning Mechanic NVQ Level 3/4, plus Electric Arc, Gas, MIG and TIG Welding.",
+  },
+  {
+    id: "health-sciences",
+    label: "Health Sciences",
+    href: "/courses/health-sciences",
+    description: "Caregiver Training and Nurse Assistant programmes, currently under development.",
+  },
+  {
+    id: "foreign-employment",
+    label: "Foreign Employment Based Training Programmes",
+    href: "/courses/foreign-employment",
+    description:
+      "Short, practice-led programmes preparing candidates for entry-level roles abroad: Lifeguard Training and Public Area Housekeeping.",
+  },
+];
 
 export const courseStatusLabels: Record<string, string> = {
   active: "Active Programme — Applications Open",

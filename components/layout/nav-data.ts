@@ -10,9 +10,10 @@ export const coursesMenu: NavLink[] = [
   { label: "Pastry & Bakery", href: "/courses/pastry-bakery-nvq-level-3-4", description: "NVQ Level 3/4 flagship programme" },
   { label: "Food & Beverage Service", href: "/courses/hospitality#food-beverage-service", description: "Front-of-house service skills" },
   { label: "Housekeeping", href: "/courses/hospitality#housekeeping", description: "Hotel housekeeping standards" },
-  { label: "Technology", href: "/courses/technology", description: "Welding and technical trades" },
+  { label: "Technology", href: "/courses/technology", description: "Refrigeration & A/C and welding trades" },
   { label: "Welding", href: "/courses/technology#welding", description: "Arc, gas, MIG and TIG welding" },
   { label: "Health Sciences", href: "/courses/health-sciences", description: "Caregiver and nurse assistant training" },
+  { label: "Foreign Employment Training", href: "/courses/foreign-employment", description: "Lifeguard and public area housekeeping" },
   { label: "Upcoming Programmes", href: "/courses?status=upcoming", description: "Programmes in development" },
 ];
 

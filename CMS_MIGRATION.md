@@ -32,7 +32,7 @@ Any of these work; the mapping below is CMS-agnostic.
 |---|---|
 | `slug` | Slug (unique, matches route `/courses/[slug]`) |
 | `title`, `shortTitle` | Short text |
-| `category` | Select (enum: hospitality, pastry-bakery, food-beverage-service, housekeeping, technology, welding, health-sciences) |
+| `category` | Select (enum: hospitality, technology, health-sciences, foreign-employment — the four course divisions) |
 | `status` | Select (enum: active, upcoming, under-development) — **never let this default to "active"** |
 | `qualification`, `qualificationLabel` | Select + short text |
 | `accreditation` | Object `{ body, note }` |
