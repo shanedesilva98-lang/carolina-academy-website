@@ -20,14 +20,20 @@ const featured = [
     title: "Hospitality Programmes",
     description: "Food & beverage service, housekeeping, cookery and steward training.",
     href: "/courses/hospitality",
-    image: { src: "/images/hospitality-training.svg", alt: "Hospitality practical training" },
+    image: {
+      src: "/images/courses/hospitality-front-office.jpg",
+      alt: "Two hospitality students in business attire speaking with a hotel front-desk staff member in a resort lobby",
+    },
     status: "upcoming" as const,
   },
   {
     title: "Welding Training",
     description: "Electric arc, gas, MIG and TIG welding within our growing Technology faculty.",
     href: "/courses/technology",
-    image: { src: "/images/welding-training.svg", alt: "Welding and technical training" },
+    image: {
+      src: "/images/courses/welding-training.jpg",
+      alt: "Two welders wearing protective masks and gloves working on a metal workpiece with sparks flying",
+    },
     status: "upcoming" as const,
   },
   {
