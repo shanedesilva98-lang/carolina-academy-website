@@ -22,8 +22,8 @@ export function PathwaysSection() {
               icon={GraduationCap}
               variant="navy"
               image={{
-                src: "/images/pathways/practical-training-kitchen.jpg",
-                alt: "Carolina Academy trainers and hospitality students in chef whites in the practical training kitchen",
+                src: "/images/pathways/vocational-culinary-team.jpg",
+                alt: "A team of chefs in white and black uniforms gathered around a steel table of freshly baked pizzas in a commercial kitchen",
               }}
             />
           </FadeIn>
@@ -36,8 +36,8 @@ export function PathwaysSection() {
               icon={Globe2}
               variant="royal"
               image={{
-                src: "/images/pathways/south-korea-campus.png",
-                alt: "Students walking on a South Korean university campus with the city skyline and Namsan Tower in the background",
+                src: "/images/pathways/study-abroad-campus.jpg",
+                alt: "Four smiling international students chatting as they walk across a sunny university campus",
               }}
             />
           </FadeIn>

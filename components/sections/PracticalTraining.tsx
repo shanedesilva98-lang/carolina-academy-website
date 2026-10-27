@@ -37,8 +37,8 @@ export function PracticalTraining() {
         <FadeIn delay={0.1} className="order-1 lg:order-2">
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border-4 border-white/10">
             <Image
-              src="/images/training-kitchen.svg"
-              alt="Students practising in the training kitchen at Carolina Beach Resort"
+              src="/images/facilities/training-kitchen-group.jpg"
+              alt="A group of trainees in white shirts and chef hats standing with a chef instructor in a commercial training kitchen"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"

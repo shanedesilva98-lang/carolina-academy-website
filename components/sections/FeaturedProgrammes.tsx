@@ -4,60 +4,89 @@ import { SectionHeading } from "@/components/shared/SectionHeading";
 import { VerificationBadge } from "@/components/shared/VerificationBadge";
 import { FadeIn } from "@/components/shared/FadeIn";
 import { Card, CardContent } from "@/components/ui/card";
+import { courseDivisions, getCoursesByCategory } from "@/content/courses";
+import type { CourseCategory, CourseStatus } from "@/types/course";
 
-const featured = [
-  {
-    title: "Pastry & Bakery NVQ Level 3/4",
-    description: "Carolina Academy's flagship hands-on programme, trained at Carolina Beach Resort.",
-    href: "/courses/pastry-bakery-nvq-level-3-4",
-    image: {
-      src: "/images/courses/pastry-bakery-training.png",
-      alt: "Carolina Academy pastry and bakery trainees reviewing a plated selection of finished baked goods with their trainer",
-    },
-    status: "active" as const,
+interface FeaturedItem {
+  title: string;
+  description: string;
+  href: string;
+  image: { src: string; alt: string };
+  status: CourseStatus;
+  /** Shown under the description. Omitted when everything in the card is active. */
+  note?: string;
+}
+
+const UPCOMING_NOTE = "Upcoming – Details subject to confirmation";
+
+const divisionImages: Record<CourseCategory, { src: string; alt: string }> = {
+  hospitality: {
+    src: "/images/courses/hospitality-front-office.jpg",
+    alt: "Two hospitality students in business attire speaking with a hotel front-desk staff member in a resort lobby",
   },
-  {
-    title: "Hospitality Programmes",
-    description: "Food & beverage service, housekeeping, cookery and steward training.",
-    href: "/courses/hospitality",
-    image: {
-      src: "/images/courses/hospitality-front-office.jpg",
-      alt: "Two hospitality students in business attire speaking with a hotel front-desk staff member in a resort lobby",
-    },
-    status: "upcoming" as const,
+  technology: {
+    src: "/images/courses/welding-training.jpg",
+    alt: "Two welders wearing protective masks and gloves working on a metal workpiece with sparks flying",
   },
-  {
-    title: "Welding Training",
-    description: "Electric arc, gas, MIG and TIG welding within our growing Technology faculty.",
-    href: "/courses/technology",
-    image: {
-      src: "/images/courses/welding-training.jpg",
-      alt: "Two welders wearing protective masks and gloves working on a metal workpiece with sparks flying",
-    },
-    status: "upcoming" as const,
+  "health-sciences": {
+    src: "/images/courses/health-sciences-caregiver.jpg",
+    alt: "Two caregivers in scrubs holding the hands of a smiling elderly woman in a bright care setting, with a colleague looking on",
   },
-  {
-    title: "Health Science Programmes",
-    description: "Caregiver and nurse assistant training, currently in development.",
-    href: "/courses/health-sciences",
-    image: { src: "/images/health-sciences-training.svg", alt: "Health sciences training" },
-    status: "under-development" as const,
+  "foreign-employment": {
+    src: "/images/courses/lifeguard-pool-rescue.jpg",
+    alt: "A lifeguard in a red top supporting a casualty on a rescue tube in a resort swimming pool while an instructor and two lifeguards holding rescue tubes look on",
   },
+};
+
+/**
+ * The four vocational divisions, built from the same data as the Courses page so
+ * the two never drift apart. A division's badge reflects its most advanced
+ * programme: Active if any programme is running, otherwise Upcoming, otherwise
+ * Under Development.
+ */
+const divisionItems: FeaturedItem[] = courseDivisions.map((division) => {
+  const programmes = getCoursesByCategory(division.id);
+  const hasActive = programmes.some((course) => course.status === "active");
+  const hasUpcoming = programmes.some((course) => course.status === "upcoming");
+  const status: CourseStatus = hasActive ? "active" : hasUpcoming ? "upcoming" : "under-development";
+  const hasInactive = programmes.some((course) => course.status !== "active");
+
+  return {
+    title: division.label,
+    description: division.description,
+    href: division.href,
+    image: divisionImages[division.id],
+    status,
+    note: hasActive ? (hasInactive ? "Other programmes are upcoming – details subject to confirmation" : undefined) : UPCOMING_NOTE,
+  };
+});
+
+const studyAbroadItems: FeaturedItem[] = [
   {
     title: "Korean Language & Study Pathways",
     description: "Language preparation pathways toward Korean-medium degree study.",
     href: "/study-abroad/south-korea#korean-language",
-    image: { src: "/images/korean-language-training.svg", alt: "Korean language programme" },
-    status: "upcoming" as const,
+    image: {
+      src: "/images/pathways/korean-language-class.jpg",
+      alt: "A teacher writing Korean greetings in Hangul on a whiteboard while four adult learners follow along with workbooks in a classroom with a Korean flag on the wall",
+    },
+    status: "upcoming",
+    note: UPCOMING_NOTE,
   },
   {
     title: "Undergraduate Study in South Korea",
     description: "Guidance for Sri Lankan students pursuing bachelor's degrees in South Korea.",
     href: "/study-abroad/south-korea#undergraduate",
-    image: { src: "/images/south-korea-campus.svg", alt: "South Korea university undergraduate study" },
-    status: "upcoming" as const,
+    image: {
+      src: "/images/pathways/korean-university-robotics-lab.jpg",
+      alt: "Four international students building a small robot car together in a university lab, with a Korean flag on a shelf and the Seoul skyline through the window",
+    },
+    status: "upcoming",
+    note: UPCOMING_NOTE,
   },
 ];
+
+const featured: FeaturedItem[] = [...divisionItems, ...studyAbroadItems];
 
 const statusBadge = {
   active: "active",
@@ -72,7 +101,7 @@ export function FeaturedProgrammes() {
         <SectionHeading
           eyebrow="Featured Programmes"
           title="Where Students Start"
-          description="A snapshot of Carolina Academy's vocational and study-abroad programmes. Status is always shown clearly."
+          description="Carolina Academy's four vocational training divisions and South Korea study pathways. Status is always shown clearly."
         />
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map((item, index) => (
@@ -98,9 +127,7 @@ export function FeaturedProgrammes() {
                     </Link>
                   </h3>
                   <p className="text-sm text-ink-muted">{item.description}</p>
-                  {item.status !== "active" ? (
-                    <p className="mt-auto text-xs font-semibold text-warning">Upcoming – Details subject to confirmation</p>
-                  ) : null}
+                  {item.note ? <p className="mt-auto text-xs font-semibold text-warning">{item.note}</p> : null}
                 </CardContent>
               </Card>
             </FadeIn>
