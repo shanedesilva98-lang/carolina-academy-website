@@ -18,11 +18,11 @@ export function SouthKoreaFeature() {
         <FadeIn>
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl shadow-lift">
             <Image
-              src="/images/south-korea-city.svg"
-              alt="South Korea city life and student environment"
+              src="/images/pathways/seoul-student-life.jpg"
+              alt="Four students chatting over coffee at an outdoor cafe table on a Seoul shopping street at dusk, with N Seoul Tower on the hill behind"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover"
+              className="object-cover object-[85%_center]"
             />
           </div>
         </FadeIn>
