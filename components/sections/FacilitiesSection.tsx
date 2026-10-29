@@ -6,10 +6,19 @@ import { FadeIn } from "@/components/shared/FadeIn";
 import { Button } from "@/components/ui/button";
 
 const facilities = [
-  { src: "/images/facilities-classroom.svg", alt: "Training classroom at Carolina Academy" },
-  { src: "/images/facilities-kitchen.svg", alt: "Practical training kitchen at Carolina Academy" },
+  {
+    src: "/images/facilities/food-safety-classroom.jpg",
+    alt: "A woman instructor standing beside a whiteboard and a Food Safety slide while a classroom of students in white shirts watches from wooden desks",
+  },
+  {
+    src: "/images/facilities/culinary-training-pot.jpg",
+    alt: "A chef instructor in a black jacket stirring a large pot while four trainees in white shirts and chef hats watch in a commercial kitchen",
+  },
   { src: "/images/facilities/carolina-beach-resort.jpg", alt: "Carolina Beach Resort hospitality training environment" },
-  { src: "/images/facilities-consultation-area.svg", alt: "Study-abroad consultation area at Carolina Academy" },
+  {
+    src: "/images/facilities/consultation-office.jpg",
+    alt: "Two students in business attire seated at a wooden desk in a one-on-one consultation with a man in a blue shirt, while a staff member in uniform stands behind holding a folder",
+  },
 ];
 
 export function FacilitiesSection() {

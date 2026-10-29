@@ -37,7 +37,7 @@ const sections = [
   {
     title: "Future Training Facilities",
     description: "Additional facilities are planned as Carolina Academy's Technology and Health Sciences faculties develop.",
-    images: [{ src: "/images/facilities-future.svg", alt: "Planned future training facilities" }],
+    images: [{ src: "/images/facilities/elderly-care-training.jpg", alt: "Illustration of caregiver trainees in scrubs watching an instructor take an elderly woman's blood pressure in a bright care training room" }],
   },
 ];
 
