@@ -17,12 +17,12 @@ const sections = [
   {
     title: "Training Classrooms",
     description: "Classroom spaces used for theory instruction alongside practical training.",
-    images: [{ src: "/images/facilities-classroom.svg", alt: "Training classroom at Carolina Academy" }],
+    images: [{ src: "/images/facilities/food-safety-classroom.jpg", alt: "A woman instructor standing beside a whiteboard and a Food Safety slide while a classroom of students in white shirts watches from wooden desks" }],
   },
   {
     title: "Practical Training Kitchen",
     description: "A dedicated kitchen space for hands-on pastry, bakery and culinary practice.",
-    images: [{ src: "/images/facilities-kitchen.svg", alt: "Practical training kitchen at Carolina Academy" }, { src: "/images/training-kitchen.svg", alt: "Students practising in the training kitchen" }],
+    images: [{ src: "/images/facilities/culinary-training-pot.jpg", alt: "A chef instructor in a black jacket stirring a large pot while four trainees in white shirts and chef hats watch in a commercial kitchen" }, { src: "/images/facilities/oven-training-session.jpg", alt: "A chef instructor in oven gloves sliding a tray into a deck oven while a trainee in a chef hat stands by holding a covered baking tray" }],
   },
   {
     title: "Hospitality Training Center — Carolina Beach Resort",
@@ -32,7 +32,7 @@ const sections = [
   {
     title: "Consultation Areas",
     description: "Dedicated spaces for one-on-one study-abroad and course guidance sessions, primarily at the Study Abroad Office in Katunayake.",
-    images: [{ src: "/images/facilities-consultation-area.svg", alt: "Consultation area at Carolina Academy" }],
+    images: [{ src: "/images/facilities/consultation-office.jpg", alt: "Two students in business attire seated at a wooden desk in a one-on-one consultation with a man in a blue shirt, while a staff member in uniform stands behind holding a folder" }],
   },
   {
     title: "Future Training Facilities",

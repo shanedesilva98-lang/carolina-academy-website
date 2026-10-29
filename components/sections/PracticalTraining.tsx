@@ -37,8 +37,8 @@ export function PracticalTraining() {
         <FadeIn delay={0.1} className="order-1 lg:order-2">
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border-4 border-white/10">
             <Image
-              src="/images/facilities/training-kitchen-group.jpg"
-              alt="A group of trainees in white shirts and chef hats standing with a chef instructor in a commercial training kitchen"
+              src="/images/facilities/chefs-collaborating-kitchen.jpg"
+              alt="Five chefs in white and black uniforms preparing fresh vegetables and a plated dish together at a steel counter in a bright commercial kitchen"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
