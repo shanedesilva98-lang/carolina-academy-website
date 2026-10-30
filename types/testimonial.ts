@@ -7,7 +7,7 @@ export interface Testimonial {
   photo?: { src: string; alt: string };
   videoUrl?: string;
   quote: string;
-  consentStatus: "consent-on-file" | "sample-content";
+  consentStatus: "consent-on-file" | "draft-pending-approval" | "sample-content";
   verified: boolean;
 }
 

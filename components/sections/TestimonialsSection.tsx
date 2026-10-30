@@ -8,10 +8,9 @@ export function TestimonialsSection() {
   return (
     <section className="py-16 sm:py-20">
       <div className="container">
-        <SectionHeading eyebrow="Student Stories" title="Sample Student Perspectives" />
+        <SectionHeading eyebrow="Student Stories" title="Student Perspectives" />
         <p className="mt-4 max-w-2xl text-sm text-ink-muted">
-          The cards below are labelled <strong>Sample Content</strong> and illustrate how verified, consented student
-          stories will appear once published. See the{" "}
+          Hear from Carolina Academy students. See the{" "}
           <Link href="/student-stories" className="font-semibold text-royal hover:underline">
             Student Stories
           </Link>{" "}

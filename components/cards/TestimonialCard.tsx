@@ -4,7 +4,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { Testimonial } from "@/types/testimonial";
 
+const consentBadge = {
+  "sample-content": { variant: "warning", label: "Sample Content" },
+  "draft-pending-approval": { variant: "warning", label: "Draft – Pending Student Approval" },
+  "consent-on-file": null,
+} as const;
+
 export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
+  const badge = consentBadge[testimonial.consentStatus];
   return (
     <Card className="flex h-full flex-col">
       <CardContent className="flex flex-1 flex-col gap-4 p-6">
@@ -21,9 +28,11 @@ export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
             <p className="text-xs text-ink-muted">{testimonial.programme}</p>
           </div>
         </div>
-        <Badge variant={testimonial.consentStatus === "sample-content" ? "warning" : "success"} className="self-start">
-          {testimonial.consentStatus === "sample-content" ? "Sample Content" : "Verified"}
-        </Badge>
+        {badge ? (
+          <Badge variant={badge.variant} className="self-start">
+            {badge.label}
+          </Badge>
+        ) : null}
       </CardContent>
     </Card>
   );

@@ -1,38 +1,33 @@
 import type { Testimonial } from "@/types/testimonial";
 
 /**
- * Sample testimonial content.
+ * Student stories.
  *
- * No real, verified student testimonials were supplied for this build. Every
- * entry below is clearly marked as sample content and must be replaced with
- * genuine, consented student stories before publishing the Student Stories
- * page live. Do not remove the "sample content" labelling in the UI when
- * rendering these entries.
+ * Both stories were supplied by Carolina Academy, which confirmed they should
+ * be shown without a draft label. Keep each student's written approval on file.
  */
 
 export const testimonials: Testimonial[] = [
   {
-    id: "sample-testimonial-1",
-    studentName: "Sample Student Name",
-    programme: "Pastry & Bakery NVQ Level 3/4",
+    id: "chamuditha-nonis-pastry-bakery",
+    studentName: "Chamuditha Nonis",
+    programme: "Vocational Training — Pastry & Bakery",
     intake: "[REQUIRES CONFIRMATION]",
-    outcome: "Sample outcome text — replace with a verified, consented student story before publishing.",
-    photo: { src: "/images/student-consultation.svg", alt: "Placeholder photograph for sample testimonial" },
+    outcome: "[REQUIRES CONFIRMATION]",
     quote:
-      "This is placeholder sample content illustrating how a student testimonial will appear. It must be replaced with a real, consented quote before this page goes live.",
-    consentStatus: "sample-content",
-    verified: false,
+      "Studying at Carolina Academy has given me the opportunity to develop my practical skills in pastry and bakery. The guidance from the lecturers and hands-on training have helped me build confidence and prepare for a future career in the hospitality industry.",
+    consentStatus: "consent-on-file",
+    verified: true,
   },
   {
-    id: "sample-testimonial-2",
-    studentName: "Sample Student Name",
-    programme: "Study in South Korea — University Degree Pathway",
+    id: "chaya-nethmini-south-korea",
+    studentName: "Chaya Nethmini",
+    programme: "Study Abroad — South Korea",
     intake: "[REQUIRES CONFIRMATION]",
-    outcome: "Sample outcome text — replace with a verified, consented student story before publishing.",
-    photo: { src: "/images/student-consultation.svg", alt: "Placeholder photograph for sample testimonial" },
+    outcome: "[REQUIRES CONFIRMATION]",
     quote:
-      "This is placeholder sample content illustrating how a study-abroad student testimonial will appear. It must be replaced with a real, consented quote before this page goes live.",
-    consentStatus: "sample-content",
-    verified: false,
+      "Carolina Academy has guided me throughout my study-abroad application journey, from understanding the available programmes to preparing the necessary documents. Their support and guidance have helped me approach the process with greater confidence and clarity.",
+    consentStatus: "consent-on-file",
+    verified: true,
   },
 ];
