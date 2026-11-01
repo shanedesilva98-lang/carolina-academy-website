@@ -63,8 +63,8 @@ export default function AboutPage() {
             <p className="mt-5 text-white/80">{organisation.legalDescription}</p>
             <div className="mt-6"><LastUpdated date="2026-08-04" /></div>
           </div>
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border-4 border-white/10">
-            <Image src="/images/about-overview.svg" alt="Overview of Carolina Academy's training environment" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+          <div className="relative aspect-[5/3] w-full overflow-hidden rounded-3xl border-4 border-white/10">
+            <Image src="/images/about/convocation-2023-batch-1.jpg" alt="Ten graduates in white shirts holding certificates and standing beside a chef instructor on stage at the Carolina Academy Convocation 2023, first batch" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
           </div>
         </div>
       </section>
