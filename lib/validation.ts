@@ -19,6 +19,8 @@ const optionalPhone = z
 const consent = z.literal(true, {
   errorMap: () => ({ message: "Please confirm you agree before submitting." }),
 });
+/** Optional promotional-marketing opt-in, separate from the required enquiry consent. */
+const marketingConsent = z.boolean().optional();
 /** Honeypot: must always be empty. Real users never see or fill this field. */
 const honeypot = z.string().max(0, "Submission rejected.").optional().or(z.literal(""));
 
@@ -38,6 +40,7 @@ export const contactFormSchema = z.object({
   preferredContactMethod: z.enum(["phone", "whatsapp", "email"]),
   message: z.string().trim().min(10, "Please add a short message (at least 10 characters).").max(2000),
   consent,
+  marketingConsent,
   companyWebsite: honeypot,
 });
 export type ContactFormSchema = z.infer<typeof contactFormSchema>;
@@ -45,7 +48,6 @@ export type ContactFormSchema = z.infer<typeof contactFormSchema>;
 export const courseApplicationFormSchema = z.object({
   fullName,
   dateOfBirth: z.string().trim().min(1, "Please provide your date of birth."),
-  nic: z.string().trim().min(5, "Please enter a valid NIC or passport number.").max(20),
   email,
   telephone,
   whatsappNumber: optionalPhone,
@@ -55,6 +57,7 @@ export const courseApplicationFormSchema = z.object({
   preferredIntake: z.string().trim().max(100).optional().or(z.literal("")),
   message: z.string().trim().max(2000).optional().or(z.literal("")),
   consent,
+  marketingConsent,
   companyWebsite: honeypot,
 });
 export type CourseApplicationFormSchema = z.infer<typeof courseApplicationFormSchema>;
@@ -72,6 +75,7 @@ export const studyAbroadEligibilityFormSchema = z.object({
   intendedIntake: z.string().trim().max(100).optional().or(z.literal("")),
   message: z.string().trim().max(2000).optional().or(z.literal("")),
   consent,
+  marketingConsent,
   companyWebsite: honeypot,
 });
 export type StudyAbroadEligibilityFormSchema = z.infer<typeof studyAbroadEligibilityFormSchema>;
@@ -86,6 +90,7 @@ export const consultationFormSchema = z.object({
   preferredContactMethod: z.enum(["phone", "whatsapp", "email"]),
   message: z.string().trim().max(2000).optional().or(z.literal("")),
   consent,
+  marketingConsent,
   companyWebsite: honeypot,
 });
 export type ConsultationFormSchema = z.infer<typeof consultationFormSchema>;

@@ -4,6 +4,7 @@ import { Controller, type Control, type FieldValues, type Path, type UseFormRegi
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
+import { MARKETING_CONSENT_TEXT } from "@/lib/consent-text";
 
 /** Label + control + accessible error message wrapper used by every form. */
 export function FormField({
@@ -52,6 +53,15 @@ export function Honeypot<T extends FieldValues>({ register }: { register: UseFor
   );
 }
 
+/** Link to the Privacy Policy, opened in a new tab so a half-completed form is not lost. */
+export function PrivacyLink() {
+  return (
+    <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="font-medium text-royal underline underline-offset-2">
+      Privacy Policy
+    </a>
+  );
+}
+
 export function ConsentField<T extends FieldValues>({
   id,
   error,
@@ -61,7 +71,7 @@ export function ConsentField<T extends FieldValues>({
   id: Path<T>;
   error?: string;
   control: Control<T>;
-  label?: string;
+  label?: React.ReactNode;
 }) {
   return (
     <div className="flex flex-col gap-1.5">
@@ -82,8 +92,12 @@ export function ConsentField<T extends FieldValues>({
           )}
         />
         <Label htmlFor={id} className="font-normal leading-snug">
-          {label ??
-            "I consent to Carolina Academy contacting me about this enquiry and understand my information will be handled in line with the Privacy Policy."}
+          {label ?? (
+            <>
+              I consent to Carolina Academy contacting me about this enquiry and understand my information will be
+              handled in line with the <PrivacyLink />.
+            </>
+          )}
         </Label>
       </div>
       {error ? (
@@ -91,6 +105,30 @@ export function ConsentField<T extends FieldValues>({
           <AlertCircle className="h-3.5 w-3.5" /> {error}
         </p>
       ) : null}
+    </div>
+  );
+}
+
+/** Optional, unticked promotional-marketing opt-in. Never required to submit a form. */
+export function MarketingConsentField<T extends FieldValues>({ control }: { control: Control<T> }) {
+  return (
+    <div className="flex items-start gap-3">
+      <Controller
+        name={"marketingConsent" as Path<T>}
+        control={control}
+        render={({ field }) => (
+          <Checkbox
+            id="marketingConsent"
+            checked={Boolean(field.value)}
+            onCheckedChange={(checked) => field.onChange(checked === true)}
+            onBlur={field.onBlur}
+            ref={field.ref}
+          />
+        )}
+      />
+      <Label htmlFor="marketingConsent" className="font-normal leading-snug">
+        {MARKETING_CONSENT_TEXT}
+      </Label>
     </div>
   );
 }

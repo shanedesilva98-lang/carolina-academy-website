@@ -1,8 +1,8 @@
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SchemaMarkup } from "@/components/seo/SchemaMarkup";
-import { DisclaimerBox } from "@/components/shared/DisclaimerBox";
 import { LastUpdated } from "@/components/shared/LastUpdated";
 import { organisation } from "@/content/organisation";
+import { PRIVACY_POLICY_VERSION } from "@/lib/consent-text";
 import { buildMetadata } from "@/lib/metadata";
 import { webPageSchema } from "@/lib/schema";
 
@@ -21,42 +21,61 @@ export default function CookiePolicyPage() {
       <section className="py-16 sm:py-20">
         <div className="container max-w-3xl">
           <h1 className="font-heading text-4xl font-extrabold text-navy">Cookie Policy</h1>
-          <div className="mt-4"><LastUpdated date="2026-08-04" /></div>
+          <div className="mt-4"><LastUpdated date={PRIVACY_POLICY_VERSION} /></div>
 
-          <DisclaimerBox variant="info" title="Legal review required" className="mt-8">
-            This page is a professionally structured placeholder and should be reviewed once analytics and
-            advertising tools (see .env.example) are activated in production.
-          </DisclaimerBox>
+          <div className="mt-10 space-y-8 leading-relaxed text-ink-muted">
+            <section>
+              <h2 className="font-heading text-xl font-bold text-navy">What are cookies?</h2>
+              <p className="mt-3">
+                Cookies are small text files that a website can place on your device. They are used to make websites
+                work, to remember choices, and sometimes to measure how a site is used or to show advertising.
+              </p>
+            </section>
 
-          <div className="prose prose-slate mt-10 max-w-none text-ink">
-            <h2 className="font-heading text-xl font-bold text-navy">What Are Cookies?</h2>
-            <p>
-              Cookies are small text files placed on your device to help websites function and to collect
-              analytics information.
-            </p>
+            <section>
+              <h2 className="font-heading text-xl font-bold text-navy">What this website uses today</h2>
+              <ul className="mt-3 list-disc space-y-1.5 pl-6">
+                <li>
+                  <strong>No analytics or advertising cookies.</strong> At the date of this policy, this website does not
+                  run Google Analytics, Google Tag Manager, the Meta Pixel or the Meta Conversions API, and it does not
+                  set advertising or tracking cookies.
+                </li>
+                <li>
+                  <strong>Embedded Google Maps.</strong> Our location pages can show a Google Map. When it loads, Google may
+                  set cookies and receive your IP address under{" "}
+                  <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-royal hover:underline">Google&apos;s privacy policy</a>.
+                </li>
+                <li>
+                  <strong>Links to other services.</strong> If you follow a WhatsApp, Facebook or Instagram link, that
+                  service sets its own cookies under its own policy.
+                </li>
+              </ul>
+            </section>
 
-            <h2 className="font-heading text-xl font-bold text-navy">Cookies We May Use</h2>
-            <ul>
-              <li><strong>Essential cookies</strong> — required for basic website functionality.</li>
-              <li><strong>Analytics cookies</strong> — Google Analytics 4, used to understand website usage (only active once NEXT_PUBLIC_GA_ID is configured).</li>
-              <li><strong>Advertising cookies</strong> — Meta Pixel, used to measure marketing effectiveness (only active once NEXT_PUBLIC_META_PIXEL_ID is configured).</li>
-            </ul>
+            <section>
+              <h2 className="font-heading text-xl font-bold text-navy">If this changes</h2>
+              <p className="mt-3">
+                If we decide to use analytics or advertising tools in future, we will first update this policy and our{" "}
+                <a href="/privacy-policy" className="text-royal hover:underline">Privacy Policy</a>, and we will ask for your consent
+                before any non-essential cookies are set.
+              </p>
+            </section>
 
-            <h2 className="font-heading text-xl font-bold text-navy">Your Choices</h2>
-            <p>
-              You can control cookies through your browser settings. Disabling cookies may affect the
-              functionality of some parts of this website. A cookie-consent banner will be added prior to
-              activating non-essential analytics or advertising cookies in production.
-            </p>
+            <section>
+              <h2 className="font-heading text-xl font-bold text-navy">Your choices</h2>
+              <p className="mt-3">
+                You can block or delete cookies in your browser settings. Blocking the embedded map&apos;s cookies does not
+                affect the rest of the website.
+              </p>
+            </section>
 
-            <h2 className="font-heading text-xl font-bold text-navy">Contact</h2>
-            <p>
-              Questions about this Cookie Policy can be sent to{" "}
-              <a href={organisation.emailHref} className="text-royal hover:underline">
-                {organisation.email}
-              </a>
-              .
-            </p>
+            <section>
+              <h2 className="font-heading text-xl font-bold text-navy">Contact</h2>
+              <p className="mt-3">
+                Questions about this Cookie Policy can be sent to{" "}
+                <a href={organisation.emailHref} className="text-royal hover:underline">{organisation.email}</a>.
+              </p>
+            </section>
           </div>
         </div>
       </section>

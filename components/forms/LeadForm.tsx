@@ -4,7 +4,7 @@ import * as React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { FormField, Honeypot, FormStatusMessage } from "@/components/forms/FormPrimitives";
+import { FormField, Honeypot, FormStatusMessage, PrivacyLink } from "@/components/forms/FormPrimitives";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -85,7 +85,7 @@ export function LeadForm({ source = "lead-form", title = "Request a Callback" }:
         {isSubmitting ? "Sending…" : "Request Callback"}
       </Button>
       <p className="text-center text-xs text-ink-muted">
-        By submitting, you agree to be contacted by Carolina Academy about your enquiry.
+        By submitting, you agree to be contacted by Carolina Academy about your enquiry. Read our <PrivacyLink />.
       </p>
     </form>
   );

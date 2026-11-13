@@ -61,8 +61,8 @@ cp .env.example .env.local
 | `NEXT_PUBLIC_GTM_ID` | Google Tag Manager container ID (leave empty to disable) |
 | `NEXT_PUBLIC_META_PIXEL_ID` | Meta Pixel ID (leave empty to disable) |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Google Search Console HTML-tag verification code |
-| `CONTACT_EMAIL`, `ADMIN_NOTIFICATION_EMAIL` | Where admin lead notifications should go |
-| `RESEND_API_KEY` / `SENDGRID_API_KEY` / `BREVO_API_KEY` | Pick **one** email provider — see §10 |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM` | Zoho SMTP settings for enquiry delivery (server-only) — see "Enquiry delivery" below |
+| `ADMIN_NOTIFICATION_EMAIL`, `MARKETING_CONSENT_LOG_EMAIL` | Staff mailbox for enquiries; optional separate mailbox for marketing opt-in records |
 | `CRM_WEBHOOK_URL`, `GOOGLE_SHEETS_WEBHOOK_URL`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | Optional lead-delivery integrations |
 | `NEXT_PUBLIC_WHATSAPP_NUMBER` | WhatsApp number used to build `wa.me` links (public, no `+`) |
 | `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL_CHILAW` | "Embed a map" URL from Google Maps for the Hospitality Training Center (Chilaw) |
@@ -128,18 +128,21 @@ Events work identically via `content/events.ts` / `/events`.
 - Submissions POST to `app/api/contact/route.ts` or `app/api/applications/route.ts`, which re-validate with
   the same Zod schema server-side, apply a simple in-memory rate limit (`lib/rate-limit.ts`), then call
   `submitLead()` in `lib/email.ts`.
-- `lib/email.ts` is the **lead-delivery provider abstraction**. It currently uses a mock handler that logs to
-  the server console and always returns success. Swap in a real provider by implementing one of the commented
-  examples (Resend is stubbed out) and pointing `submitLead()` at it.
+- `lib/email.ts` delivers each submission over SMTP (Zoho Mail). A submission is reported as successful only
+  after the staff notification email is accepted; otherwise the API returns an error and the form shows its
+  error message. Applicant data is never logged. In production/preview, missing SMTP settings are a failure,
+  never a silent success. `lib/lead-email.ts` formats the emails.
 
-### Email provider setup
+### Enquiry delivery (Zoho SMTP)
 
-1. Pick a provider (Resend is recommended for simplicity) and get an API key.
-2. Add the key to `.env.local` (e.g. `RESEND_API_KEY=...`).
-3. In `lib/email.ts`, uncomment the `sendViaResend` example, `npm install resend`, and call it from
-   `submitLead()` instead of `sendViaMock`.
-4. The admin-notification and student-confirmation HTML templates are already written in `lib/email.ts` —
-   adjust copy as needed.
+1. Create a dedicated sender mailbox (for example `leads@carolinaacademy.lk`) and a Zoho **app-specific password**.
+2. Set `SMTP_HOST` (`smtppro.zoho.com` for paid/organisation accounts, `smtp.zoho.com` for free), `SMTP_PORT=465`,
+   `SMTP_USER`, `SMTP_PASS`, and `ADMIN_NOTIFICATION_EMAIL` in Vercel (Preview first, then Production).
+3. NIC/passport numbers are not collected on the website and are never emailed.
+4. When a person ticks the optional marketing box, a separate `[Marketing opt-in]` email (with timestamp, policy
+   version and the exact wording agreed to) goes to `MARKETING_CONSENT_LOG_EMAIL` (default: the staff mailbox),
+   and the staff email also states the choice. Filter on the `[Marketing opt-in]` subject to keep a consent list.
+5. Locally with no SMTP settings, `npm run dev` uses a dev-only mock that sends and stores nothing.
 
 ## 8. Analytics Setup
 

@@ -22,6 +22,8 @@ export interface ContactFormValues {
   preferredContactMethod: PreferredContactMethod;
   message: string;
   consent: boolean;
+  /** Optional promotional-marketing opt-in, recorded separately from `consent`. */
+  marketingConsent?: boolean;
   /** Honeypot field — must stay empty. Bots that auto-fill every field get caught here. */
   companyWebsite?: string;
 }
@@ -29,7 +31,6 @@ export interface ContactFormValues {
 export interface CourseApplicationFormValues {
   fullName: string;
   dateOfBirth: string;
-  nic: string;
   email: string;
   telephone: string;
   whatsappNumber?: string;
@@ -39,6 +40,8 @@ export interface CourseApplicationFormValues {
   preferredIntake?: string;
   message?: string;
   consent: boolean;
+  /** Optional promotional-marketing opt-in, recorded separately from `consent`. */
+  marketingConsent?: boolean;
   companyWebsite?: string;
 }
 
@@ -55,6 +58,8 @@ export interface StudyAbroadEligibilityFormValues {
   intendedIntake?: string;
   message?: string;
   consent: boolean;
+  /** Optional promotional-marketing opt-in, recorded separately from `consent`. */
+  marketingConsent?: boolean;
   companyWebsite?: string;
 }
 
@@ -68,6 +73,8 @@ export interface ConsultationFormValues {
   preferredContactMethod: PreferredContactMethod;
   message?: string;
   consent: boolean;
+  /** Optional promotional-marketing opt-in, recorded separately from `consent`. */
+  marketingConsent?: boolean;
   companyWebsite?: string;
 }
 

@@ -1,112 +1,143 @@
 import "server-only";
+import nodemailer, { type Transporter } from "nodemailer";
 import type { LeadFormPayload, LeadSubmissionResult } from "@/types/form";
+import {
+  applicantConfirmationEmail,
+  hasRealEmail,
+  marketingConsentRecordEmail,
+  singleLine,
+  staffNotificationEmail,
+  type FormattedEmail,
+} from "@/lib/lead-email";
 
 /**
- * Lead-delivery provider abstraction.
+ * Lead delivery over SMTP (Zoho Mail).
  *
- * Server-only module — never import this from a Client Component. API routes
- * (app/api/contact/route.ts, app/api/applications/route.ts) call
- * `submitLead()`, which currently uses the mock handler below and logs the
- * submission server-side.
+ * Server-only. Called by app/api/contact and app/api/applications.
  *
- * To go live, implement one (or more) of the provider functions and switch
- * the `activeProvider` used inside `submitLead`. Suggested providers:
- * Resend, SendGrid, Brevo, Google Sheets webhook, CRM webhook, Supabase.
- * Required env vars for each are documented in .env.example.
+ * Guarantees:
+ * - A submission is reported as successful ONLY after the staff notification
+ *   email has been accepted by the SMTP server.
+ * - Applicant data is never written to logs. Failures log the form kind and
+ *   a short error code only.
+ * - NIC/passport numbers are never emailed (see lib/lead-email.ts).
+ * - In production/preview, missing SMTP settings are a hard failure, not a
+ *   silent success. The dev-only mock records nothing.
+ *
+ * Environment (server-only, never NEXT_PUBLIC_): SMTP_HOST, SMTP_PORT,
+ * SMTP_USER, SMTP_PASS, ADMIN_NOTIFICATION_EMAIL; optional SMTP_FROM,
+ * MARKETING_CONSENT_LOG_EMAIL, NEXT_PUBLIC_SITE_URL. See .env.example.
  */
 
-function adminNotificationEmail(payload: LeadFormPayload): { subject: string; html: string } {
-  const kindLabel: Record<LeadFormPayload["kind"], string> = {
-    contact: "New Contact Enquiry",
-    "course-application": "New Course Application",
-    "study-abroad-eligibility": "New Study Abroad Eligibility Submission",
-    consultation: "New Consultation Booking",
-  };
+interface SmtpConfig {
+  host: string;
+  port: number;
+  user: string;
+  pass: string;
+  from: string;
+  staffTo: string;
+  consentLogTo: string;
+  siteUrl: string;
+}
 
+function readConfig(): SmtpConfig | null {
+  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, ADMIN_NOTIFICATION_EMAIL } = process.env;
+  if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS || !ADMIN_NOTIFICATION_EMAIL) return null;
+  const port = Number(SMTP_PORT || 465);
+  if (!Number.isInteger(port) || port <= 0) return null;
   return {
-    subject: `Carolina Academy website: ${kindLabel[payload.kind]}`,
-    html: `
-      <h2>${kindLabel[payload.kind]}</h2>
-      <p>A new submission was received on carolinaacademy.lk.</p>
-      <pre style="font-family: monospace; background:#EAF2FF; padding:16px; border-radius:8px;">${escapeHtml(
-        JSON.stringify(payload.data, null, 2)
-      )}</pre>
-      <p>Reply directly to the applicant using the contact details above.</p>
-    `,
+    host: SMTP_HOST,
+    port,
+    user: SMTP_USER,
+    pass: SMTP_PASS,
+    from: process.env.SMTP_FROM || SMTP_USER,
+    staffTo: ADMIN_NOTIFICATION_EMAIL,
+    consentLogTo: process.env.MARKETING_CONSENT_LOG_EMAIL || ADMIN_NOTIFICATION_EMAIL,
+    siteUrl: (process.env.NEXT_PUBLIC_SITE_URL || "https://carolinaacademy.lk").replace(/\/$/, ""),
   };
 }
 
-function studentConfirmationEmail(payload: LeadFormPayload): { subject: string; html: string } | null {
-  const name = "fullName" in payload.data ? payload.data.fullName : undefined;
-  if (!name) return null;
-
-  return {
-    subject: "Thank you for contacting Carolina Academy",
-    html: `
-      <p>Dear ${escapeHtml(name)},</p>
-      <p>Thank you for reaching out to Carolina Academy. We have received your submission and a member of our team
-      will contact you shortly, usually within 1–2 working days (Monday to Saturday, 10:00 AM – 5:30 PM).</p>
-      <p>If your enquiry is urgent, you can call the Hospitality Training Center on +94 77 383 1955, the Study Abroad
-      Office on +94 71 637 3334, or message us on WhatsApp.</p>
-      <p>Warm regards,<br/>Carolina Academy<br/>Hospitality Training Center — Slot A1, Carolina Beach Resort, Ambakandawila Road, Chilaw, Sri Lanka<br/>Study Abroad Office — 1665/A, 1st Floor, Colombo Road, Kurana, Katunayake, Sri Lanka</p>
-    `,
-  };
+function createTransport(config: SmtpConfig): Transporter {
+  return nodemailer.createTransport({
+    host: config.host,
+    port: config.port,
+    secure: config.port === 465,
+    requireTLS: config.port !== 465,
+    auth: { user: config.user, pass: config.pass },
+    connectionTimeout: 10_000,
+    greetingTimeout: 10_000,
+    socketTimeout: 15_000,
+  });
 }
 
-function escapeHtml(input: string): string {
-  return input
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+async function send(transport: Transporter, config: SmtpConfig, to: string, email: FormattedEmail, replyTo?: string) {
+  await transport.sendMail({
+    from: `Carolina Academy Website <${config.from}>`,
+    to,
+    replyTo,
+    subject: email.subject,
+    text: email.text,
+    html: email.html,
+  });
 }
 
-/** Mock provider: logs to the server console. Safe default with no external calls. */
-async function sendViaMock(payload: LeadFormPayload): Promise<void> {
-  const admin = adminNotificationEmail(payload);
-  const student = studentConfirmationEmail(payload);
-  console.info("[lead:mock] admin notification ->", admin.subject);
-  if (student) {
-    console.info("[lead:mock] student confirmation ->", student.subject);
-  }
-}
+const FAILURE: LeadSubmissionResult = {
+  success: false,
+  message: "Something went wrong while sending your submission. Please try again or contact us directly.",
+};
 
-/**
- * Example Resend implementation (not active by default).
- * Uncomment and set RESEND_API_KEY to enable.
- */
-// async function sendViaResend(payload: LeadFormPayload): Promise<void> {
-//   const { Resend } = await import("resend");
-//   const resend = new Resend(process.env.RESEND_API_KEY);
-//   const admin = adminNotificationEmail(payload);
-//   await resend.emails.send({
-//     from: "Carolina Academy Website <no-reply@carolinaacademy.lk>",
-//     to: process.env.ADMIN_NOTIFICATION_EMAIL || "info@carolinaacademy.lk",
-//     subject: admin.subject,
-//     html: admin.html,
-//   });
-//   const student = studentConfirmationEmail(payload);
-//   const studentEmail = "email" in payload.data ? payload.data.email : undefined;
-//   if (student && studentEmail) {
-//     await resend.emails.send({
-//       from: "Carolina Academy <no-reply@carolinaacademy.lk>",
-//       to: studentEmail,
-//       subject: student.subject,
-//       html: student.html,
-//     });
-//   }
-// }
+const SUCCESS: LeadSubmissionResult = {
+  success: true,
+  message: "Thank you — your submission has been received. Our team will contact you shortly.",
+};
+
+/** Log without any applicant data: form kind and error code only. */
+function logFailure(kind: LeadFormPayload["kind"], stage: string, error: unknown) {
+  const code = error && typeof error === "object" && "code" in error ? String((error as { code: unknown }).code) : "UNKNOWN";
+  console.error(`[lead] ${stage} failed kind=${kind} code=${code}`);
+}
 
 export async function submitLead(payload: LeadFormPayload): Promise<LeadSubmissionResult> {
-  try {
-    await sendViaMock(payload);
-    return {
-      success: true,
-      message: "Thank you — your submission has been received. Our team will contact you shortly.",
-    };
-  } catch {
-    return {
-      success: false,
-      message: "Something went wrong while sending your submission. Please try again or contact us directly.",
-    };
+  const config = readConfig();
+
+  if (!config) {
+    if (process.env.NODE_ENV === "development") {
+      // Dev-only mock: nothing is sent or stored. Never active in production.
+      console.info(`[lead:dev-mock] ${payload.kind} received (not delivered: SMTP not configured)`);
+      return SUCCESS;
+    }
+    console.error(`[lead] SMTP is not configured; submission kind=${payload.kind} was NOT delivered`);
+    return FAILURE;
   }
+
+  const receivedAt = new Date();
+  const transport = createTransport(config);
+  const replyTo = hasRealEmail(payload) ? singleLine(payload.data.email) : undefined;
+
+  try {
+    await send(transport, config, config.staffTo, staffNotificationEmail(payload, receivedAt), replyTo);
+  } catch (error) {
+    logFailure(payload.kind, "staff-notification", error);
+    return FAILURE;
+  }
+
+  // The submission is now safely with staff. The remaining emails are best effort.
+  if (payload.data.marketingConsent === true) {
+    try {
+      await send(transport, config, config.consentLogTo, marketingConsentRecordEmail(payload, receivedAt));
+    } catch (error) {
+      logFailure(payload.kind, "marketing-consent-record", error);
+    }
+  }
+
+  const confirmation = applicantConfirmationEmail(payload, config.siteUrl);
+  if (confirmation) {
+    try {
+      await send(transport, config, singleLine(payload.data.email), confirmation);
+    } catch (error) {
+      logFailure(payload.kind, "applicant-confirmation", error);
+    }
+  }
+
+  return SUCCESS;
 }

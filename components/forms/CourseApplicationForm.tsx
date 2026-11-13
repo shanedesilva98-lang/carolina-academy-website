@@ -4,7 +4,7 @@ import * as React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { courseApplicationFormSchema, type CourseApplicationFormSchema } from "@/lib/validation";
-import { FormField, Honeypot, ConsentField, FormStatusMessage } from "@/components/forms/FormPrimitives";
+import { FormField, Honeypot, ConsentField, MarketingConsentField, FormStatusMessage } from "@/components/forms/FormPrimitives";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -82,11 +82,11 @@ export function CourseApplicationForm({ defaultCourseSlug }: { defaultCourseSlug
       </div>
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        <FormField id="nic" label="NIC / Passport number" required error={errors.nic?.message}>
-          <Input id="nic" aria-invalid={Boolean(errors.nic)} {...register("nic")} />
-        </FormField>
         <FormField id="highestEducation" label="Highest education level" required error={errors.highestEducation?.message}>
           <Input id="highestEducation" aria-invalid={Boolean(errors.highestEducation)} {...register("highestEducation")} />
+        </FormField>
+        <FormField id="preferredIntake" label="Preferred intake" error={errors.preferredIntake?.message} hint="Optional">
+          <Input id="preferredIntake" aria-invalid={Boolean(errors.preferredIntake)} {...register("preferredIntake")} />
         </FormField>
       </div>
 
@@ -103,9 +103,6 @@ export function CourseApplicationForm({ defaultCourseSlug }: { defaultCourseSlug
         <FormField id="whatsappNumber" label="WhatsApp number" error={errors.whatsappNumber?.message} hint="Optional, if different from telephone">
           <Input id="whatsappNumber" type="tel" aria-invalid={Boolean(errors.whatsappNumber)} {...register("whatsappNumber")} />
         </FormField>
-        <FormField id="preferredIntake" label="Preferred intake" error={errors.preferredIntake?.message} hint="Optional">
-          <Input id="preferredIntake" aria-invalid={Boolean(errors.preferredIntake)} {...register("preferredIntake")} />
-        </FormField>
       </div>
 
       <FormField id="address" label="Address" required error={errors.address?.message}>
@@ -117,6 +114,7 @@ export function CourseApplicationForm({ defaultCourseSlug }: { defaultCourseSlug
       </FormField>
 
       <ConsentField id="consent" control={control} error={errors.consent?.message} />
+      <MarketingConsentField control={control} />
 
       <FormStatusMessage
         status={status}

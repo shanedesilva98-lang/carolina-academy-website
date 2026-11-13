@@ -4,7 +4,7 @@ import * as React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { consultationFormSchema, type ConsultationFormSchema } from "@/lib/validation";
-import { FormField, Honeypot, ConsentField, FormStatusMessage } from "@/components/forms/FormPrimitives";
+import { FormField, Honeypot, ConsentField, MarketingConsentField, FormStatusMessage } from "@/components/forms/FormPrimitives";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -126,6 +126,7 @@ export function ConsultationForm() {
       </FormField>
 
       <ConsentField id="consent" control={control} error={errors.consent?.message} />
+      <MarketingConsentField control={control} />
 
       <FormStatusMessage
         status={status}
